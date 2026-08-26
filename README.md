@@ -4,8 +4,6 @@ OWL 2 DL representation of the [Coalition for Secure AI Risk Map](https://github
 
 TBox, catalog, and the four alignments named in [secure-ai-tooling#388](https://github.com/cosai-oasis/secure-ai-tooling/issues/388) Phase 2. Catalog rows come from CoSAI-RM YAML at commit `3a896b8`.
 
-Workstream 2 also holds RFC 0.1 of the [AI Jailbreak Prevention Framework](rfc/jpf-0.1.md). Scoring and controls are in `data/`. References include [Redeploying Fable 5](https://www.anthropic.com/news/redeploying-fable-5), [Recommendations from the Hugging Face Autonomous Attack](https://www.linkedin.com/pulse/recommendations-from-hugging-face-autonomous-attack-bill-stout-el4ic), and [Who is responsible for what](https://www.linkedin.com/pulse/who-responsible-what-accountability-assessment-openai-bill-stout-s1dsc/).
-
 ## Graphs
 
 | File | Contents |
@@ -22,7 +20,7 @@ Workstream 2 also holds RFC 0.1 of the [AI Jailbreak Prevention Framework](rfc/j
 
 Term IRIs use `https://cosai-oasis.github.io/ontology/cosai-rm#`. YAML ids are local names: `cosai:riskDataPoisoning`, `cosai:controlInputValidationAndSanitization`.
 
-Load `cosai-rm-full.ttl` for SPARQL. Do not import `d3fend.owl` or `spdx-model.ttl` unless you want those reasoners to run on the upstream ontologies. See [modeling decisions](docs/modeling-decisions.md).
+Load `cosai-rm-full.ttl` for SPARQL. Do not import `d3fend.owl` or `spdx-model.ttl` unless you want those reasoners to run on the upstream ontologies.
 
 ## Query examples
 
