@@ -1,6 +1,6 @@
 # Modeling decisions
 
-CoSAI-RM 0.1.0 is an OWL 2 DL TBox plus a catalog of named individuals. It answers issue [388](https://github.com/cosai-oasis/secure-ai-tooling/issues/388) through Phase 2 of that plan, with SKOS alignments for OpenCRE, BFO 2020, MITRE D3FEND 1.5.0, and SPDX 3.1.
+CoSAI-RM 0.1.0 is an OWL 2 DL TBox plus a catalog of named individuals. Issue [388](https://github.com/cosai-oasis/secure-ai-tooling/issues/388) Phase 2 in this repo is the TBox, catalog individuals, and the four named alignments: OpenCRE, BFO 2020, MITRE D3FEND 1.5.0, and SPDX 3.1.
 
 ## Catalog entries are individuals
 
@@ -8,7 +8,7 @@ Each YAML row becomes one named individual, typed by its category class (`Supply
 
 ## Two layers: catalog and world
 
-A catalog entry is an information content entity. It is about a kind of risk, control, component, or persona. It is not that world entity.
+A catalog entry is an information content entity. It is about a kind of risk, control, component, or persona.
 
 | Catalog class | World class | BFO parent of the world class |
 | --- | --- | --- |
@@ -18,6 +18,8 @@ A catalog entry is an information content entity. It is about a kind of risk, co
 | `Component` | (varies) | recorded per individual with `cosai:describesBfoClass` |
 
 Component kinds split three ways: training data and the model are information content entities; storage and serving are material entities; training, evaluation, and I/O handling are processes.
+
+World-level classes are unpopulated in the catalog. Link an instance to its catalog row with `cosai:exemplifies`.
 
 ## SKOS instead of OWL equivalence
 

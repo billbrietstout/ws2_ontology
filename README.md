@@ -2,7 +2,7 @@
 
 OWL 2 DL representation of the [Coalition for Secure AI Risk Map](https://github.com/cosai-oasis/secure-ai-tooling/tree/main/risk-map), with SKOS alignments to OpenCRE, BFO 2020, MITRE D3FEND 1.5.0, and SPDX 3.1.
 
-This repository implements [secure-ai-tooling#388](https://github.com/cosai-oasis/secure-ai-tooling/issues/388) through Phase 2, plus the four alignments named in that issue. Catalog rows come from CoSAI-RM YAML at commit `3a896b8`.
+TBox, catalog, and the four alignments named in [secure-ai-tooling#388](https://github.com/cosai-oasis/secure-ai-tooling/issues/388) Phase 2. Catalog rows come from CoSAI-RM YAML at commit `3a896b8`.
 
 Workstream 2 also holds RFC 0.1 of the [AI Jailbreak Prevention Framework](rfc/jpf-0.1.md). Scoring and controls are in `data/`. References include [Redeploying Fable 5](https://www.anthropic.com/news/redeploying-fable-5), [Recommendations from the Hugging Face Autonomous Attack](https://www.linkedin.com/pulse/recommendations-from-hugging-face-autonomous-attack-bill-stout-el4ic), and [Who is responsible for what](https://www.linkedin.com/pulse/who-responsible-what-accountability-assessment-openai-bill-stout-s1dsc/).
 

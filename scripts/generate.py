@@ -105,6 +105,21 @@ def prose(value) -> str:
     return str(value).strip()
 
 
+def catalog_comment(*candidates) -> str:
+    """Short rdfs:comment from YAML. Prefer shortDescription. Strip em dashes and control-addresses glue."""
+    raw = ""
+    for candidate in candidates:
+        text = prose(candidate)
+        if text:
+            raw = text
+            break
+    if not raw:
+        return ""
+    raw = raw.replace("\u2014", ", ").replace("\u2013", " to ")
+    raw = re.sub(r"(?i)\s*This control addresses[^.]*\.", "", raw)
+    return re.sub(r"\s+", " ", raw).strip(" ,;")
+
+
 def load_yaml(name: str) -> dict:
     with open(VENDOR_YAML / name, encoding="utf-8") as handle:
         return yaml.safe_load(handle)
@@ -241,28 +256,28 @@ def build_catalog(risks, controls, components, personas, lifecycle, impact, acto
         extra = [f"cosai:stageOrder {int(stage['order'])}"]
         emit_individual(
             lines, stage_local(stage["id"]), ["LifecycleStage"],
-            stage["title"], stage.get("description"), stage["id"],
+            stage["title"], catalog_comment(stage.get("description")), stage["id"],
             "lifecycle-stage.yaml", extra,
         )
 
     for item in impact["impactTypes"]:
         emit_individual(
             lines, impact_local(item["id"]), ["ImpactType"],
-            item["title"], item.get("description"), item["id"],
+            item["title"], catalog_comment(item.get("description")), item["id"],
             "impact-type.yaml",
         )
 
     for item in actor["actorAccessLevels"]:
         emit_individual(
             lines, access_local(item["id"]), ["ActorAccessLevel"],
-            item["title"], item.get("description"), item["id"],
+            item["title"], catalog_comment(item.get("description")), item["id"],
             "actor-access.yaml",
         )
 
     for persona in personas["personas"]:
         emit_individual(
             lines, persona["id"], ["Persona"],
-            persona["title"], prose(persona.get("description")),
+            persona["title"], catalog_comment(persona.get("description")),
             persona["id"], "personas.yaml",
             deprecated=bool(persona.get("deprecated")),
         )
@@ -279,7 +294,7 @@ def build_catalog(risks, controls, components, personas, lifecycle, impact, acto
             extra.append(f"cosai:fedBy {ref_list(frs)}")
         emit_individual(
             lines, component["id"], [klass, "Component"],
-            component["title"], prose(component.get("description")),
+            component["title"], catalog_comment(component.get("description")),
             component["id"], "components.yaml", extra,
         )
 
@@ -308,7 +323,7 @@ def build_catalog(risks, controls, components, personas, lifecycle, impact, acto
             extra.append("cosai:requiresActorAccess " + ", ".join(f"cosai:{access_local(a)}" for a in access))
         emit_individual(
             lines, risk["id"], [klass, "Risk"],
-            risk["title"], prose(risk.get("shortDescription") or risk.get("longDescription")),
+            risk["title"], catalog_comment(risk.get("shortDescription")),
             risk["id"], "risks.yaml", extra,
         )
 
@@ -337,7 +352,7 @@ def build_catalog(risks, controls, components, personas, lifecycle, impact, acto
             extra.append("cosai:hasImpactType " + ", ".join(f"cosai:{impact_local(i)}" for i in impacts))
         emit_individual(
             lines, control["id"], [klass, "Control"],
-            control["title"], prose(control.get("description")),
+            control["title"], catalog_comment(control.get("description")),
             control["id"], "controls.yaml", extra,
         )
 
@@ -395,7 +410,7 @@ def build_frameworks(risks, controls, personas, frameworks) -> str:
 
     for fw in frameworks["frameworks"]:
         local = fw_local[fw["id"]]
-        extra_comment = prose(fw.get("description"))
+        extra_comment = catalog_comment(fw.get("description"))
         lines.append(f"cosai:{local} a cosai:Framework ;")
         lines.append(f"    rdfs:label {literal(fw.get('fullName') or fw['name'])} ;")
         if extra_comment:

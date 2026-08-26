@@ -49,7 +49,7 @@ cosai:describesBfoClass a owl:AnnotationProperty ;
 
 cosai:CatalogEntry a owl:Class ;
     rdfs:label "catalog entry"@en ;
-    rdfs:comment "A published CoSAI-RM record. The record is an information content entity. It describes a kind of risk, control, component, or persona in the world; it is not itself that world entity. BFO and IAO placement is in alignments/bfo.ttl."@en .
+    rdfs:comment "A published CoSAI-RM record. The record is an information content entity about a kind of risk, control, component, or persona. BFO and IAO placement is in alignments/bfo.ttl."@en .
 
 cosai:AlignmentAssertion a owl:Class ;
     rdfs:label "alignment assertion"@en ;
@@ -87,7 +87,7 @@ cosai:RuntimeOutputSecurityRisk a owl:Class ;
 
 cosai:RiskDisposition a owl:Class ;
     rdfs:label "risk disposition"@en ;
-    rdfs:comment "Optional world-level class for a particular system's disposition to a catalogued risk. Not populated in the catalog graph. Link a disposition to its catalog entry with cosai:exemplifies."@en .
+    rdfs:comment "BFO disposition of a particular system toward a catalogued risk."@en .
 
 #################################################################
 # Control
@@ -124,7 +124,7 @@ cosai:GovernanceControl a owl:Class ;
 
 cosai:ControlImplementation a owl:Class ;
     rdfs:label "control implementation"@en ;
-    rdfs:comment "Optional world-level class for a process that enacts a catalogued control in a deployed system. Link with cosai:exemplifies."@en .
+    rdfs:comment "BFO process that enacts a catalogued control in a deployed system."@en .
 
 #################################################################
 # Component
@@ -154,11 +154,11 @@ cosai:ApplicationComponent a owl:Class ;
 cosai:Persona a owl:Class ;
     rdfs:label "persona"@en ;
     rdfs:subClassOf cosai:CatalogEntry ;
-    rdfs:comment "A catalogued role in the AI lifecycle. The catalog entry describes a BFO role borne by an organization or person; it is not itself that agent."@en .
+    rdfs:comment "A catalogued role in the AI lifecycle. The catalog entry describes a BFO role borne by an organization or person."@en .
 
 cosai:PersonaRole a owl:Class ;
     rdfs:label "persona role"@en ;
-    rdfs:comment "Optional world-level class for the role borne by a particular agent. Link with cosai:exemplifies."@en .
+    rdfs:comment "BFO role borne by a particular agent."@en .
 
 #################################################################
 # Supporting vocabularies
@@ -182,7 +182,7 @@ cosai:ActorAccessLevel a owl:Class ;
 cosai:Framework a owl:Class ;
     rdfs:label "framework"@en ;
     rdfs:subClassOf cosai:CatalogEntry ;
-    rdfs:comment "An external standard or knowledge base that CoSAI-RM maps into."@en .
+    rdfs:comment "A named external catalog CoSAI-RM cites, such as MITRE ATLAS."@en .
 
 cosai:FrameworkTerm a owl:Class ;
     rdfs:label "framework term"@en ;

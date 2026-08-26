@@ -1,6 +1,6 @@
 # Paired evidence packs for CoSAI-RM
 
-Issue [#491](https://github.com/cosai-oasis/secure-ai-tooling/issues/491) asks for attacks that show each risk is real, and controls that change the outcome. The catalog already proves shape. The missing proof is efficacy. The method is a paired evidence pack per risk: one case without the mapped control, one case with it, both run against a reference subject, never against a live third-party system.
+Issue [#491](https://github.com/cosai-oasis/secure-ai-tooling/issues/491) asks for attacks that show each risk is real, and controls that change the outcome. The catalog already proves YAML shape. The missing proof is that a mapped control changes the outcome of a named attack. The method is a paired evidence pack per risk: one case without the mapped control, one case with it, both run against a reference subject, never against a live third-party system.
 
 Source: CoSAI-RM schemas on [cosai-oasis/secure-ai-tooling](https://github.com/cosai-oasis/secure-ai-tooling/tree/main/risk-map) `main`, 25 Aug 2026. 36 closed-enum risks, 35 closed-enum controls, 7 universal controls with `risks: all`.
 
@@ -14,9 +14,9 @@ Source: CoSAI-RM schemas on [cosai-oasis/secure-ai-tooling](https://github.com/c
 
 ADR-025 D1 already declines conventional integration and end-to-end tests. Class 1, 3, and 4 packs are unit tests and schema checks, the same pattern as the sanitizer attack corpus in ADR-015. Class 2 synthetic pipelines need an ADR-025 amendment and a named compute budget. They do not run on every pull request.
 
-## Two proofs, not one
+## Catalog consistency and catalog efficacy
 
-Current hooks in `scripts/hooks/` answer "is the YAML well-formed and cross-linked?" Issue 491 asks "does this risk happen, and does this control stop it?" Both proofs are required. Neither substitutes for the other.
+Current hooks in `scripts/hooks/` check whether the YAML is well-formed and cross-linked. Issue 491 asks whether a named risk happens and whether a mapped control stops it.
 
 | Proof | What it checks | Where it lives today | Oracle |
 | --- | --- | --- | --- |
@@ -39,35 +39,16 @@ TDD order for a new pack: write the oracle and both expected outcomes first (ADR
 
 Proposed assignment of the 36 risks: 27 C1, 6 C2, 3 C3. C4 is reserved for the 7 universal controls (process evidence), not for extra risk rows. Source: schema enums on `main`.
 
-### C1: Deterministic fixture
-
-Exact oracle. No GPU. Runs on every PR. Stub orchestrator, digest check, allowlist, rate limit, inventory miss, cache key.
-
-Gate: `pytest` or `node --test`. Wall clock per pack under 5s. Fits ADR-025 D1 as written.
-
-### C2: Synthetic mini-pipeline
-
-Threshold oracle on a tiny model or tiny train set: backdoor trigger rate, membership AUC, planted-eval score.
-
-Gate: scheduled workflow, not PR CI. Budget named in the pack (CPU minutes, optional GPU minutes). Requires amending ADR-025 D1.
-
-### C3: Recorded replay
-
-Frozen request, response, or hardware trace from a cited study. The adapter predicate is tested against the trace. The live attack is not re-run.
-
-Gate: PR CI. Proves the control would have fired on that evidence. Does not prove the attack still works on a new model.
-
-### C4: Process evidence
-
-One pack per universal control: red teaming, vulnerability management, threat detection, incident response, internal policies, product governance, risk governance.
-
-Oracle is an attestation artifact that names a risk sample, owner persona, and date. Not 36 times 7 runtime tests.
+| Class | Oracle | Gate | ADR-025 |
+| --- | --- | --- | --- |
+| C1 Deterministic fixture | Exact: stub orchestrator, digest check, allowlist, rate limit, inventory miss, cache key. No GPU. | `pytest` or `node --test` on every PR. Wall clock per pack under 5s. | Fits D1 as written. |
+| C2 Synthetic mini-pipeline | Threshold on a tiny model or tiny train set: backdoor trigger rate, membership AUC, planted-eval score. | Scheduled workflow, not PR CI. Budget named in the pack (CPU minutes, optional GPU minutes). | Amend D1. |
+| C3 Recorded replay | Frozen request, response, or hardware trace from a cited study. The adapter predicate is tested against the trace. The live attack is not re-run. | PR CI. Proves the control would have fired on that evidence. Does not prove the attack still works on a new model. | Fits D1 as unit tests of a predicate. |
+| C4 Process evidence | Attestation artifact that names a risk sample, owner persona, and date. One pack per universal control: red teaming, vulnerability management, threat detection, incident response, internal policies, product governance, risk governance. | Schema check of the attestation. Not 36 times 7 runtime tests. | Fits D1 as the schema axis. |
 
 ## Evidence pack shape
 
-Keep attack fixtures out of `risks.yaml`. The public catalog stays the reuse contract in ADR-014. Packs live in a sibling tree and cite closed-enum ids.
-
-`risk-map/evidence/`
+Leave attack fixtures out of `risks.yaml` (ADR-014). Packs live in `risk-map/evidence/` and cite closed-enum ids.
 
 - `schema.json`: pack manifest (risk id, class, compute gate, reference subject id, control ids, oracle type, budgets).
 - `packs/<riskId>/manifest.yaml`: one directory per risk, additional packs as suffixes when a risk needs more than one mechanism.
@@ -89,7 +70,7 @@ Copy the sanitizer meta-test: adding a risk id without a pack fails CI once the 
 
 ## Pathfinders
 
-Five packs, four classes of mechanism, before any coverage gate on the rest of the catalog. Each row names the control adapter that must change the oracle.
+Five risk packs (four C1, one C2) before any coverage gate on the rest of the catalog. Each row names the control adapter that must change the oracle.
 
 | Risk | Class | Control adapter | WITHOUT | WITH |
 | --- | --- | --- | --- | --- |
@@ -99,11 +80,11 @@ Five packs, four classes of mechanism, before any coverage gate on the rest of t
 | `riskRetrievalVectorStorePoisoning` | C1 | `controlRetrievalAndVectorSystemIntegrity` | Planted document is the top hit | Unsigned or mutated chunk rejected |
 | `riskDataPoisoning` | C2 | `controlTrainingDataSanitization` | Tiny model trigger rate above bound | Scanner drops the poisoned slice; trigger rate falls below bound |
 
-Add one C4 pack in the same phase: `controlRedTeaming` requires an attestation that names a risk sample, the persona who ran it, and a dated artifact path. That pack is the template for the other six universal controls.
+A sixth pack in the same phase covers `controlRedTeaming`: an attestation that names a risk sample, the persona who ran it, and a dated artifact path. That pack is the template for the other six universal controls.
 
 ## Proposed class for every risk
 
-Starting assignment for maintainers to confirm, not a scored grade. Pathfinder rows are marked in the Pathfinder column.
+Starting assignment for maintainers to confirm. Pathfinder rows are marked in the Pathfinder column.
 
 A miss is a risk whose class is wrong, whose subject cannot exhibit the impact, or whose oracle is not measurable. Reclassify; do not force C1 onto a hardware side channel.
 
@@ -169,10 +150,10 @@ Three counts, generated from pack results, not from YAML length. A miss is a ris
 
 Live-model flakiness. A prompt-injection pack against a stub is stable. The same pack against a vendor LLM is not a unit test and is out of scope until someone names a model pin, a seed, and an acceptable attack-success bound.
 
-Adapter fidelity. A step cap is a fair stand-in for `controlAgentExecutionBounds`. A one-page policy is not a fair stand-in for `controlInternalPoliciesAndEducation`. C4 exists because that gap is real.
+Adapter fidelity. A step cap is a fair stand-in for `controlAgentExecutionBounds`. A one-page policy is not a fair stand-in for `controlInternalPoliciesAndEducation`.
 
 Multi-control risks. `riskDataPoisoning` lists several controls. The pathfinder tests sanitization first. The method does not yet say whether remaining controls on that risk are independent legs or a documented subset.
 
 Hardware and extraction. C3 replay never re-proves the original paper. If CoSAI-RM needs live side-channel evidence, that is a separate compute and lab ask, not a pytest file.
 
-Style of the existing sanitizer corpus (ADR-015 / issue 241): fixtures as data, meta-test on ids, CI fails when an id ships without a fixture. That pattern, applied to risk ids, is the whole method.
+Style of the existing sanitizer corpus (ADR-015 / issue 241): fixtures as data, meta-test on ids, CI fails when an id ships without a fixture. Apply that fixture and meta-test pattern to risk ids.
