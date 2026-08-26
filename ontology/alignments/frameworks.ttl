@@ -1,0 +1,938 @@
+@prefix cosai: <https://cosai-oasis.github.io/ontology/cosai-rm#> .
+@prefix cre: <https://www.opencre.org/cre/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://cosai-oasis.github.io/ontology/cosai-rm/alignments/frameworks> a owl:Ontology ;
+    owl:imports <https://cosai-oasis.github.io/ontology/cosai-rm/catalog> ;
+    dcterms:title "CoSAI-RM mappings to ATLAS, NIST AI RMF, STRIDE, OWASP LLM, ISO 22989, and the EU AI Act"@en ;
+    rdfs:comment "Framework terms are named individuals. Links use skos:relatedMatch or skos:closeMatch. This graph does not assert owl:equivalentClass."@en .
+
+cosai:frameworkMitreAtlas a cosai:Framework ;
+    rdfs:label "Adversarial Threat Landscape for Artificial-Intelligence Systems"@en ;
+    rdfs:comment "Knowledge base of adversary tactics and techniques based on real-world attack observations on machine learning systems"@en ;
+    dcterms:identifier "mitre-atlas" ;
+    rdfs:seeAlso <https://atlas.mitre.org> ;
+    owl:versionInfo "5.0.1" .
+
+cosai:frameworkNistAiRmf a cosai:Framework ;
+    rdfs:label "NIST Artificial Intelligence Risk Management Framework"@en ;
+    rdfs:comment "Framework for managing risks to individuals, organizations, and society associated with artificial intelligence"@en ;
+    dcterms:identifier "nist-ai-rmf" ;
+    rdfs:seeAlso <https://www.nist.gov/itl/ai-risk-management-framework> ;
+    owl:versionInfo "1.0" .
+
+cosai:frameworkStride a cosai:Framework ;
+    rdfs:label "STRIDE Threat Model"@en ;
+    rdfs:comment "Microsoft threat modeling framework categorizing security threats"@en ;
+    dcterms:identifier "stride" ;
+    rdfs:seeAlso <https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool-threats> .
+
+cosai:frameworkOwaspLlm a cosai:Framework ;
+    rdfs:label "OWASP Top 10 for Large Language Model Applications"@en ;
+    rdfs:comment "Top 10 critical security risks for applications using Large Language Models"@en ;
+    dcterms:identifier "owasp-top10-llm" ;
+    rdfs:seeAlso <https://owasp.org/www-project-top-10-for-large-language-model-applications> ;
+    owl:versionInfo "2025" .
+
+cosai:frameworkIso22989 a cosai:Framework ;
+    rdfs:label "ISO/IEC 22989 Artificial Intelligence Concepts and Terminology"@en ;
+    rdfs:comment "International standard defining AI concepts and terminology including roles and responsibilities"@en ;
+    dcterms:identifier "iso-22989" ;
+    rdfs:seeAlso <https://www.iso.org/standard/74296.html> ;
+    owl:versionInfo "2022" .
+
+cosai:frameworkEuAiAct a cosai:Framework ;
+    rdfs:label "European Union Artificial Intelligence Act"@en ;
+    rdfs:comment "Legal framework establishing risk-tier requirements for AI systems across the EU, including prohibitions on certain uses, obligations for high-risk systems, and requirements for general-purpose AI models"@en ;
+    dcterms:identifier "eu-ai-act" ;
+    rdfs:seeAlso <https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai> ;
+    owl:versionInfo "2024" .
+
+cosai:term_mitre_atlas_AML_T0020 a cosai:FrameworkTerm ;
+    rdfs:label "AML.T0020" ;
+    dcterms:identifier "AML.T0020" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/techniques/AML.T0020> .
+
+cosai:term_mitre_atlas_AML_T0019 a cosai:FrameworkTerm ;
+    rdfs:label "AML.T0019" ;
+    dcterms:identifier "AML.T0019" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/techniques/AML.T0019> .
+
+cosai:term_mitre_atlas_AML_T0010_002 a cosai:FrameworkTerm ;
+    rdfs:label "AML.T0010.002" ;
+    dcterms:identifier "AML.T0010.002" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/techniques/AML.T0010.002> .
+
+cosai:term_mitre_atlas_AML_T0043 a cosai:FrameworkTerm ;
+    rdfs:label "AML.T0043" ;
+    dcterms:identifier "AML.T0043" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/techniques/AML.T0043> .
+
+cosai:term_mitre_atlas_AML_T0059 a cosai:FrameworkTerm ;
+    rdfs:label "AML.T0059" ;
+    dcterms:identifier "AML.T0059" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/techniques/AML.T0059> .
+
+cosai:term_mitre_atlas_AML_T0008_002 a cosai:FrameworkTerm ;
+    rdfs:label "AML.T0008.002" ;
+    dcterms:identifier "AML.T0008.002" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/techniques/AML.T0008.002> .
+
+cosai:term_stride_Tampering a cosai:FrameworkTerm ;
+    rdfs:label "Tampering" ;
+    dcterms:identifier "Tampering" ;
+    cosai:inFramework cosai:frameworkStride .
+
+cosai:term_owasp_top10_llm_LLM04_2025 a cosai:FrameworkTerm ;
+    rdfs:label "LLM04:2025" ;
+    dcterms:identifier "LLM04:2025" ;
+    cosai:inFramework cosai:frameworkOwaspLlm .
+
+cosai:term_stride_InformationDisclosure a cosai:FrameworkTerm ;
+    rdfs:label "InformationDisclosure" ;
+    dcterms:identifier "InformationDisclosure" ;
+    cosai:inFramework cosai:frameworkStride .
+
+cosai:term_mitre_atlas_AML_T0010_001 a cosai:FrameworkTerm ;
+    rdfs:label "AML.T0010.001" ;
+    dcterms:identifier "AML.T0010.001" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/techniques/AML.T0010.001> .
+
+cosai:term_mitre_atlas_AML_T0010_003 a cosai:FrameworkTerm ;
+    rdfs:label "AML.T0010.003" ;
+    dcterms:identifier "AML.T0010.003" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/techniques/AML.T0010.003> .
+
+cosai:term_mitre_atlas_AML_T0018 a cosai:FrameworkTerm ;
+    rdfs:label "AML.T0018" ;
+    dcterms:identifier "AML.T0018" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/techniques/AML.T0018> .
+
+cosai:term_stride_ElevationOfPrivilege a cosai:FrameworkTerm ;
+    rdfs:label "ElevationOfPrivilege" ;
+    dcterms:identifier "ElevationOfPrivilege" ;
+    cosai:inFramework cosai:frameworkStride .
+
+cosai:term_owasp_top10_llm_LLM03_2025 a cosai:FrameworkTerm ;
+    rdfs:label "LLM03:2025" ;
+    dcterms:identifier "LLM03:2025" ;
+    cosai:inFramework cosai:frameworkOwaspLlm .
+
+cosai:term_owasp_top10_llm_LLM02_2025 a cosai:FrameworkTerm ;
+    rdfs:label "LLM02:2025" ;
+    dcterms:identifier "LLM02:2025" ;
+    cosai:inFramework cosai:frameworkOwaspLlm .
+
+cosai:term_mitre_atlas_AML_T0024_002 a cosai:FrameworkTerm ;
+    rdfs:label "AML.T0024.002" ;
+    dcterms:identifier "AML.T0024.002" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/techniques/AML.T0024.002> .
+
+cosai:term_mitre_atlas_AML_T0025 a cosai:FrameworkTerm ;
+    rdfs:label "AML.T0025" ;
+    dcterms:identifier "AML.T0025" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/techniques/AML.T0025> .
+
+cosai:term_mitre_atlas_AML_T0048_004 a cosai:FrameworkTerm ;
+    rdfs:label "AML.T0048.004" ;
+    dcterms:identifier "AML.T0048.004" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/techniques/AML.T0048.004> .
+
+cosai:term_mitre_atlas_AML_T0049 a cosai:FrameworkTerm ;
+    rdfs:label "AML.T0049" ;
+    dcterms:identifier "AML.T0049" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/techniques/AML.T0049> .
+
+cosai:term_mitre_atlas_AML_T0051 a cosai:FrameworkTerm ;
+    rdfs:label "AML.T0051" ;
+    dcterms:identifier "AML.T0051" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/techniques/AML.T0051> .
+
+cosai:term_owasp_top10_llm_LLM01_2025 a cosai:FrameworkTerm ;
+    rdfs:label "LLM01:2025" ;
+    dcterms:identifier "LLM01:2025" ;
+    cosai:inFramework cosai:frameworkOwaspLlm .
+
+cosai:term_mitre_atlas_AML_T0029 a cosai:FrameworkTerm ;
+    rdfs:label "AML.T0029" ;
+    dcterms:identifier "AML.T0029" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/techniques/AML.T0029> .
+
+cosai:term_mitre_atlas_AML_T0034 a cosai:FrameworkTerm ;
+    rdfs:label "AML.T0034" ;
+    dcterms:identifier "AML.T0034" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/techniques/AML.T0034> .
+
+cosai:term_stride_DenialOfService a cosai:FrameworkTerm ;
+    rdfs:label "DenialOfService" ;
+    dcterms:identifier "DenialOfService" ;
+    cosai:inFramework cosai:frameworkStride .
+
+cosai:term_owasp_top10_llm_LLM10_2025 a cosai:FrameworkTerm ;
+    rdfs:label "LLM10:2025" ;
+    dcterms:identifier "LLM10:2025" ;
+    cosai:inFramework cosai:frameworkOwaspLlm .
+
+cosai:term_mitre_atlas_AML_T0005 a cosai:FrameworkTerm ;
+    rdfs:label "AML.T0005" ;
+    dcterms:identifier "AML.T0005" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/techniques/AML.T0005> .
+
+cosai:term_owasp_top10_llm_LLM06_2025 a cosai:FrameworkTerm ;
+    rdfs:label "LLM06:2025" ;
+    dcterms:identifier "LLM06:2025" ;
+    cosai:inFramework cosai:frameworkOwaspLlm .
+
+cosai:term_mitre_atlas_AML_T0015 a cosai:FrameworkTerm ;
+    rdfs:label "AML.T0015" ;
+    dcterms:identifier "AML.T0015" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/techniques/AML.T0015> .
+
+cosai:term_mitre_atlas_AML_T0024 a cosai:FrameworkTerm ;
+    rdfs:label "AML.T0024" ;
+    dcterms:identifier "AML.T0024" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/techniques/AML.T0024> .
+
+cosai:term_owasp_top10_llm_LLM07_2025 a cosai:FrameworkTerm ;
+    rdfs:label "LLM07:2025" ;
+    dcterms:identifier "LLM07:2025" ;
+    cosai:inFramework cosai:frameworkOwaspLlm .
+
+cosai:term_owasp_top10_llm_LLM09_2025 a cosai:FrameworkTerm ;
+    rdfs:label "LLM09:2025" ;
+    dcterms:identifier "LLM09:2025" ;
+    cosai:inFramework cosai:frameworkOwaspLlm .
+
+cosai:term_owasp_top10_llm_LLM05_2025 a cosai:FrameworkTerm ;
+    rdfs:label "LLM05:2025" ;
+    dcterms:identifier "LLM05:2025" ;
+    cosai:inFramework cosai:frameworkOwaspLlm .
+
+cosai:term_mitre_atlas_AML_T0086 a cosai:FrameworkTerm ;
+    rdfs:label "AML.T0086" ;
+    dcterms:identifier "AML.T0086" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/techniques/AML.T0086> .
+
+cosai:term_mitre_atlas_AML_T0010_004 a cosai:FrameworkTerm ;
+    rdfs:label "AML.T0010.004" ;
+    dcterms:identifier "AML.T0010.004" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/techniques/AML.T0010.004> .
+
+cosai:term_stride_Spoofing a cosai:FrameworkTerm ;
+    rdfs:label "Spoofing" ;
+    dcterms:identifier "Spoofing" ;
+    cosai:inFramework cosai:frameworkStride .
+
+cosai:term_stride_Repudiation a cosai:FrameworkTerm ;
+    rdfs:label "Repudiation" ;
+    dcterms:identifier "Repudiation" ;
+    cosai:inFramework cosai:frameworkStride .
+
+cosai:term_mitre_atlas_AML_T0012 a cosai:FrameworkTerm ;
+    rdfs:label "AML.T0012" ;
+    dcterms:identifier "AML.T0012" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/techniques/AML.T0012> .
+
+cosai:term_mitre_atlas_AML_T0034_002 a cosai:FrameworkTerm ;
+    rdfs:label "AML.T0034.002" ;
+    dcterms:identifier "AML.T0034.002" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/techniques/AML.T0034.002> .
+
+cosai:term_mitre_atlas_AML_T0053 a cosai:FrameworkTerm ;
+    rdfs:label "AML.T0053" ;
+    dcterms:identifier "AML.T0053" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/techniques/AML.T0053> .
+
+cosai:term_mitre_atlas_AML_T0055 a cosai:FrameworkTerm ;
+    rdfs:label "AML.T0055" ;
+    dcterms:identifier "AML.T0055" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/techniques/AML.T0055> .
+
+cosai:term_mitre_atlas_AML_M0007 a cosai:FrameworkTerm ;
+    rdfs:label "AML.M0007" ;
+    dcterms:identifier "AML.M0007" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/mitigations/AML.M0007> .
+
+cosai:term_mitre_atlas_AML_M0013 a cosai:FrameworkTerm ;
+    rdfs:label "AML.M0013" ;
+    dcterms:identifier "AML.M0013" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/mitigations/AML.M0013> .
+
+cosai:term_mitre_atlas_AML_M0014 a cosai:FrameworkTerm ;
+    rdfs:label "AML.M0014" ;
+    dcterms:identifier "AML.M0014" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/mitigations/AML.M0014> .
+
+cosai:term_nist_ai_rmf_MEASURE_2_3 a cosai:FrameworkTerm ;
+    rdfs:label "MEASURE-2.3" ;
+    dcterms:identifier "MEASURE-2.3" ;
+    cosai:inFramework cosai:frameworkNistAiRmf ;
+    owl:versionInfo "1.0" .
+
+cosai:term_mitre_atlas_AML_M0011 a cosai:FrameworkTerm ;
+    rdfs:label "AML.M0011" ;
+    dcterms:identifier "AML.M0011" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/mitigations/AML.M0011> .
+
+cosai:term_mitre_atlas_AML_M0010 a cosai:FrameworkTerm ;
+    rdfs:label "AML.M0010" ;
+    dcterms:identifier "AML.M0010" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/mitigations/AML.M0010> .
+
+cosai:term_mitre_atlas_AML_M0015 a cosai:FrameworkTerm ;
+    rdfs:label "AML.M0015" ;
+    dcterms:identifier "AML.M0015" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/mitigations/AML.M0015> .
+
+cosai:term_mitre_atlas_AML_M0020 a cosai:FrameworkTerm ;
+    rdfs:label "AML.M0020" ;
+    dcterms:identifier "AML.M0020" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/mitigations/AML.M0020> .
+
+cosai:term_mitre_atlas_AML_M0024 a cosai:FrameworkTerm ;
+    rdfs:label "AML.M0024" ;
+    dcterms:identifier "AML.M0024" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/mitigations/AML.M0024> .
+
+cosai:term_mitre_atlas_AML_M0003 a cosai:FrameworkTerm ;
+    rdfs:label "AML.M0003" ;
+    dcterms:identifier "AML.M0003" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/mitigations/AML.M0003> .
+
+cosai:term_mitre_atlas_AML_M0006 a cosai:FrameworkTerm ;
+    rdfs:label "AML.M0006" ;
+    dcterms:identifier "AML.M0006" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/mitigations/AML.M0006> .
+
+cosai:term_mitre_atlas_AML_M0008 a cosai:FrameworkTerm ;
+    rdfs:label "AML.M0008" ;
+    dcterms:identifier "AML.M0008" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/mitigations/AML.M0008> .
+
+cosai:term_mitre_atlas_AML_M0019 a cosai:FrameworkTerm ;
+    rdfs:label "AML.M0019" ;
+    dcterms:identifier "AML.M0019" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/mitigations/AML.M0019> .
+
+cosai:term_mitre_atlas_AML_M0028 a cosai:FrameworkTerm ;
+    rdfs:label "AML.M0028" ;
+    dcterms:identifier "AML.M0028" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/mitigations/AML.M0028> .
+
+cosai:term_nist_ai_rmf_MEASURE_2_11 a cosai:FrameworkTerm ;
+    rdfs:label "MEASURE-2.11" ;
+    dcterms:identifier "MEASURE-2.11" ;
+    cosai:inFramework cosai:frameworkNistAiRmf ;
+    owl:versionInfo "1.0" .
+
+cosai:term_nist_ai_rmf_GOVERN_6_2 a cosai:FrameworkTerm ;
+    rdfs:label "GOVERN-6.2" ;
+    dcterms:identifier "GOVERN-6.2" ;
+    cosai:inFramework cosai:frameworkNistAiRmf ;
+    owl:versionInfo "1.0" .
+
+cosai:term_nist_ai_rmf_GOVERN_1_6 a cosai:FrameworkTerm ;
+    rdfs:label "GOVERN-1.6" ;
+    dcterms:identifier "GOVERN-1.6" ;
+    cosai:inFramework cosai:frameworkNistAiRmf ;
+    owl:versionInfo "1.0" .
+
+cosai:term_nist_ai_rmf_MAP_3_4 a cosai:FrameworkTerm ;
+    rdfs:label "MAP-3.4" ;
+    dcterms:identifier "MAP-3.4" ;
+    cosai:inFramework cosai:frameworkNistAiRmf ;
+    owl:versionInfo "1.0" .
+
+cosai:term_nist_ai_rmf_MEASURE_2_9 a cosai:FrameworkTerm ;
+    rdfs:label "MEASURE-2.9" ;
+    dcterms:identifier "MEASURE-2.9" ;
+    cosai:inFramework cosai:frameworkNistAiRmf ;
+    owl:versionInfo "1.0" .
+
+cosai:term_nist_ai_rmf_MEASURE_2_10 a cosai:FrameworkTerm ;
+    rdfs:label "MEASURE-2.10" ;
+    dcterms:identifier "MEASURE-2.10" ;
+    cosai:inFramework cosai:frameworkNistAiRmf ;
+    owl:versionInfo "1.0" .
+
+cosai:term_nist_ai_rmf_MEASURE_2_7 a cosai:FrameworkTerm ;
+    rdfs:label "MEASURE-2.7" ;
+    dcterms:identifier "MEASURE-2.7" ;
+    cosai:inFramework cosai:frameworkNistAiRmf ;
+    owl:versionInfo "1.0" .
+
+cosai:term_mitre_atlas_AML_M0004 a cosai:FrameworkTerm ;
+    rdfs:label "AML.M0004" ;
+    dcterms:identifier "AML.M0004" ;
+    cosai:inFramework cosai:frameworkMitreAtlas ;
+    owl:versionInfo "5.0.1" ;
+    rdfs:seeAlso <https://atlas.mitre.org/mitigations/AML.M0004> .
+
+cosai:term_nist_ai_rmf_MEASURE_2_6 a cosai:FrameworkTerm ;
+    rdfs:label "MEASURE-2.6" ;
+    dcterms:identifier "MEASURE-2.6" ;
+    cosai:inFramework cosai:frameworkNistAiRmf ;
+    owl:versionInfo "1.0" .
+
+cosai:term_nist_ai_rmf_MANAGE_2_1 a cosai:FrameworkTerm ;
+    rdfs:label "MANAGE-2.1" ;
+    dcterms:identifier "MANAGE-2.1" ;
+    cosai:inFramework cosai:frameworkNistAiRmf ;
+    owl:versionInfo "1.0" .
+
+cosai:term_iso_22989_AI_Producer a cosai:FrameworkTerm ;
+    rdfs:label "AI Producer" ;
+    dcterms:identifier "AI Producer" ;
+    cosai:inFramework cosai:frameworkIso22989 ;
+    owl:versionInfo "2022" .
+
+cosai:term_iso_22989_AI_Partner_data_supplier a cosai:FrameworkTerm ;
+    rdfs:label "AI Partner (data supplier)" ;
+    dcterms:identifier "AI Partner (data supplier)" ;
+    cosai:inFramework cosai:frameworkIso22989 ;
+    owl:versionInfo "2022" .
+
+cosai:term_iso_22989_AI_Partner_infrastructure_provider a cosai:FrameworkTerm ;
+    rdfs:label "AI Partner (infrastructure provider)" ;
+    dcterms:identifier "AI Partner (infrastructure provider)" ;
+    cosai:inFramework cosai:frameworkIso22989 ;
+    owl:versionInfo "2022" .
+
+cosai:term_iso_22989_AI_Partner_tooling_provider a cosai:FrameworkTerm ;
+    rdfs:label "AI Partner (tooling provider)" ;
+    dcterms:identifier "AI Partner (tooling provider)" ;
+    cosai:inFramework cosai:frameworkIso22989 ;
+    owl:versionInfo "2022" .
+
+cosai:term_iso_22989_AI_Customer_application_builder a cosai:FrameworkTerm ;
+    rdfs:label "AI Customer (application builder)" ;
+    dcterms:identifier "AI Customer (application builder)" ;
+    cosai:inFramework cosai:frameworkIso22989 ;
+    owl:versionInfo "2022" .
+
+cosai:term_iso_22989_AI_Customer_end_user a cosai:FrameworkTerm ;
+    rdfs:label "AI Customer (end user)" ;
+    dcterms:identifier "AI Customer (end user)" ;
+    cosai:inFramework cosai:frameworkIso22989 ;
+    owl:versionInfo "2022" .
+
+cosai:riskDataPoisoning skos:closeMatch cosai:term_mitre_atlas_AML_T0020 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0020 .
+
+cosai:riskDataPoisoning skos:closeMatch cosai:term_mitre_atlas_AML_T0019 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0019 .
+
+cosai:riskDataPoisoning skos:closeMatch cosai:term_mitre_atlas_AML_T0010_002 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0010_002 .
+
+cosai:riskDataPoisoning skos:closeMatch cosai:term_mitre_atlas_AML_T0043 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0043 .
+
+cosai:riskDataPoisoning skos:closeMatch cosai:term_mitre_atlas_AML_T0059 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0059 .
+
+cosai:riskDataPoisoning skos:closeMatch cosai:term_mitre_atlas_AML_T0008_002 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0008_002 .
+
+cosai:riskDataPoisoning skos:relatedMatch cosai:term_stride_Tampering ;
+    cosai:mapsTo cosai:term_stride_Tampering .
+
+cosai:riskDataPoisoning skos:closeMatch cosai:term_owasp_top10_llm_LLM04_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM04_2025 .
+
+cosai:riskUnauthorizedTrainingData skos:closeMatch cosai:term_mitre_atlas_AML_T0010_002 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0010_002 .
+
+cosai:riskUnauthorizedTrainingData skos:relatedMatch cosai:term_stride_InformationDisclosure ;
+    cosai:mapsTo cosai:term_stride_InformationDisclosure .
+
+cosai:riskModelSourceTampering skos:closeMatch cosai:term_mitre_atlas_AML_T0010_001 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0010_001 .
+
+cosai:riskModelSourceTampering skos:closeMatch cosai:term_mitre_atlas_AML_T0010_003 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0010_003 .
+
+cosai:riskModelSourceTampering skos:closeMatch cosai:term_mitre_atlas_AML_T0018 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0018 .
+
+cosai:riskModelSourceTampering skos:relatedMatch cosai:term_stride_Tampering ;
+    cosai:mapsTo cosai:term_stride_Tampering .
+
+cosai:riskModelSourceTampering skos:relatedMatch cosai:term_stride_ElevationOfPrivilege ;
+    cosai:mapsTo cosai:term_stride_ElevationOfPrivilege .
+
+cosai:riskModelSourceTampering skos:closeMatch cosai:term_owasp_top10_llm_LLM03_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM03_2025 .
+
+cosai:riskExcessiveDataHandling skos:relatedMatch cosai:term_stride_InformationDisclosure ;
+    cosai:mapsTo cosai:term_stride_InformationDisclosure .
+
+cosai:riskExcessiveDataHandling skos:closeMatch cosai:term_owasp_top10_llm_LLM02_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM02_2025 .
+
+cosai:riskExcessiveDataHandlingDuringInference skos:relatedMatch cosai:term_stride_InformationDisclosure ;
+    cosai:mapsTo cosai:term_stride_InformationDisclosure .
+
+cosai:riskExcessiveDataHandlingDuringInference skos:closeMatch cosai:term_owasp_top10_llm_LLM02_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM02_2025 .
+
+cosai:riskModelExfiltration skos:closeMatch cosai:term_mitre_atlas_AML_T0024_002 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0024_002 .
+
+cosai:riskModelExfiltration skos:closeMatch cosai:term_mitre_atlas_AML_T0025 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0025 .
+
+cosai:riskModelExfiltration skos:closeMatch cosai:term_mitre_atlas_AML_T0048_004 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0048_004 .
+
+cosai:riskModelExfiltration skos:relatedMatch cosai:term_stride_InformationDisclosure ;
+    cosai:mapsTo cosai:term_stride_InformationDisclosure .
+
+cosai:riskModelDeploymentTampering skos:closeMatch cosai:term_mitre_atlas_AML_T0010_003 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0010_003 .
+
+cosai:riskModelDeploymentTampering skos:closeMatch cosai:term_mitre_atlas_AML_T0049 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0049 .
+
+cosai:riskModelDeploymentTampering skos:closeMatch cosai:term_mitre_atlas_AML_T0051 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0051 .
+
+cosai:riskModelDeploymentTampering skos:relatedMatch cosai:term_stride_Tampering ;
+    cosai:mapsTo cosai:term_stride_Tampering .
+
+cosai:riskModelDeploymentTampering skos:relatedMatch cosai:term_stride_ElevationOfPrivilege ;
+    cosai:mapsTo cosai:term_stride_ElevationOfPrivilege .
+
+cosai:riskModelDeploymentTampering skos:closeMatch cosai:term_owasp_top10_llm_LLM03_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM03_2025 .
+
+cosai:riskModelDeploymentTampering skos:closeMatch cosai:term_owasp_top10_llm_LLM01_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM01_2025 .
+
+cosai:riskDenialOfMLService skos:closeMatch cosai:term_mitre_atlas_AML_T0029 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0029 .
+
+cosai:riskDenialOfMLService skos:closeMatch cosai:term_mitre_atlas_AML_T0034 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0034 .
+
+cosai:riskDenialOfMLService skos:relatedMatch cosai:term_stride_DenialOfService ;
+    cosai:mapsTo cosai:term_stride_DenialOfService .
+
+cosai:riskDenialOfMLService skos:closeMatch cosai:term_owasp_top10_llm_LLM10_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM10_2025 .
+
+cosai:riskModelReverseEngineering skos:closeMatch cosai:term_mitre_atlas_AML_T0024_002 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0024_002 .
+
+cosai:riskModelReverseEngineering skos:closeMatch cosai:term_mitre_atlas_AML_T0005 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0005 .
+
+cosai:riskModelReverseEngineering skos:closeMatch cosai:term_mitre_atlas_AML_T0048_004 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0048_004 .
+
+cosai:riskModelReverseEngineering skos:relatedMatch cosai:term_stride_InformationDisclosure ;
+    cosai:mapsTo cosai:term_stride_InformationDisclosure .
+
+cosai:riskInsecureIntegratedComponent skos:closeMatch cosai:term_mitre_atlas_AML_T0051 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0051 .
+
+cosai:riskInsecureIntegratedComponent skos:closeMatch cosai:term_mitre_atlas_AML_T0049 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0049 .
+
+cosai:riskInsecureIntegratedComponent skos:relatedMatch cosai:term_stride_Tampering ;
+    cosai:mapsTo cosai:term_stride_Tampering .
+
+cosai:riskInsecureIntegratedComponent skos:relatedMatch cosai:term_stride_ElevationOfPrivilege ;
+    cosai:mapsTo cosai:term_stride_ElevationOfPrivilege .
+
+cosai:riskInsecureIntegratedComponent skos:closeMatch cosai:term_owasp_top10_llm_LLM03_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM03_2025 .
+
+cosai:riskInsecureIntegratedComponent skos:closeMatch cosai:term_owasp_top10_llm_LLM06_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM06_2025 .
+
+cosai:riskPromptInjection skos:closeMatch cosai:term_mitre_atlas_AML_T0051 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0051 .
+
+cosai:riskPromptInjection skos:relatedMatch cosai:term_stride_Tampering ;
+    cosai:mapsTo cosai:term_stride_Tampering .
+
+cosai:riskPromptInjection skos:relatedMatch cosai:term_stride_ElevationOfPrivilege ;
+    cosai:mapsTo cosai:term_stride_ElevationOfPrivilege .
+
+cosai:riskPromptInjection skos:closeMatch cosai:term_owasp_top10_llm_LLM01_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM01_2025 .
+
+cosai:riskModelEvasion skos:closeMatch cosai:term_mitre_atlas_AML_T0015 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0015 .
+
+cosai:riskModelEvasion skos:closeMatch cosai:term_mitre_atlas_AML_T0043 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0043 .
+
+cosai:riskModelEvasion skos:relatedMatch cosai:term_stride_Tampering ;
+    cosai:mapsTo cosai:term_stride_Tampering .
+
+cosai:riskModelEvasion skos:closeMatch cosai:term_owasp_top10_llm_LLM01_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM01_2025 .
+
+cosai:riskSensitiveDataDisclosure skos:closeMatch cosai:term_mitre_atlas_AML_T0024 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0024 .
+
+cosai:riskSensitiveDataDisclosure skos:relatedMatch cosai:term_stride_InformationDisclosure ;
+    cosai:mapsTo cosai:term_stride_InformationDisclosure .
+
+cosai:riskSensitiveDataDisclosure skos:closeMatch cosai:term_owasp_top10_llm_LLM02_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM02_2025 .
+
+cosai:riskSensitiveDataDisclosure skos:closeMatch cosai:term_owasp_top10_llm_LLM07_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM07_2025 .
+
+cosai:riskInferredSensitiveData skos:relatedMatch cosai:term_stride_InformationDisclosure ;
+    cosai:mapsTo cosai:term_stride_InformationDisclosure .
+
+cosai:riskInferredSensitiveData skos:closeMatch cosai:term_owasp_top10_llm_LLM02_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM02_2025 .
+
+cosai:riskInferredSensitiveData skos:closeMatch cosai:term_owasp_top10_llm_LLM09_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM09_2025 .
+
+cosai:riskInsecureModelOutput skos:relatedMatch cosai:term_stride_Tampering ;
+    cosai:mapsTo cosai:term_stride_Tampering .
+
+cosai:riskInsecureModelOutput skos:closeMatch cosai:term_owasp_top10_llm_LLM05_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM05_2025 .
+
+cosai:riskInsecureModelOutput skos:closeMatch cosai:term_owasp_top10_llm_LLM09_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM09_2025 .
+
+cosai:riskRogueActions skos:closeMatch cosai:term_mitre_atlas_AML_T0051 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0051 .
+
+cosai:riskRogueActions skos:closeMatch cosai:term_mitre_atlas_AML_T0086 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0086 .
+
+cosai:riskRogueActions skos:relatedMatch cosai:term_stride_Tampering ;
+    cosai:mapsTo cosai:term_stride_Tampering .
+
+cosai:riskRogueActions skos:relatedMatch cosai:term_stride_ElevationOfPrivilege ;
+    cosai:mapsTo cosai:term_stride_ElevationOfPrivilege .
+
+cosai:riskRogueActions skos:closeMatch cosai:term_owasp_top10_llm_LLM06_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM06_2025 .
+
+cosai:riskToolRegistryTampering skos:closeMatch cosai:term_mitre_atlas_AML_T0010_004 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0010_004 .
+
+cosai:riskToolRegistryTampering skos:relatedMatch cosai:term_stride_Tampering ;
+    cosai:mapsTo cosai:term_stride_Tampering .
+
+cosai:riskToolRegistryTampering skos:closeMatch cosai:term_owasp_top10_llm_LLM06_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM06_2025 .
+
+cosai:riskToolSourceProvenance skos:closeMatch cosai:term_mitre_atlas_AML_T0010_001 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0010_001 .
+
+cosai:riskToolSourceProvenance skos:relatedMatch cosai:term_stride_Spoofing ;
+    cosai:mapsTo cosai:term_stride_Spoofing .
+
+cosai:riskToolSourceProvenance skos:closeMatch cosai:term_owasp_top10_llm_LLM03_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM03_2025 .
+
+cosai:riskToolSourceProvenance skos:closeMatch cosai:term_owasp_top10_llm_LLM06_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM06_2025 .
+
+cosai:riskAgentDelegationChainOpacity skos:relatedMatch cosai:term_stride_Repudiation ;
+    cosai:mapsTo cosai:term_stride_Repudiation .
+
+cosai:riskStaleAgentIdentityBinding skos:relatedMatch cosai:term_stride_Spoofing ;
+    cosai:mapsTo cosai:term_stride_Spoofing .
+
+cosai:riskStaleAgentIdentityBinding skos:closeMatch cosai:term_mitre_atlas_AML_T0012 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0012 .
+
+cosai:riskMCPTransportHijacking skos:relatedMatch cosai:term_stride_Tampering ;
+    cosai:mapsTo cosai:term_stride_Tampering .
+
+cosai:riskMCPTransportHijacking skos:relatedMatch cosai:term_stride_InformationDisclosure ;
+    cosai:mapsTo cosai:term_stride_InformationDisclosure .
+
+cosai:riskShadowAndUnknownAgents skos:relatedMatch cosai:term_stride_Spoofing ;
+    cosai:mapsTo cosai:term_stride_Spoofing .
+
+cosai:riskShadowAndUnknownAgents skos:relatedMatch cosai:term_stride_Repudiation ;
+    cosai:mapsTo cosai:term_stride_Repudiation .
+
+cosai:riskShadowAndUnknownAgents skos:closeMatch cosai:term_mitre_atlas_AML_T0012 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0012 .
+
+cosai:riskRunawayAgentToolLoops skos:relatedMatch cosai:term_stride_DenialOfService ;
+    cosai:mapsTo cosai:term_stride_DenialOfService .
+
+cosai:riskRunawayAgentToolLoops skos:closeMatch cosai:term_mitre_atlas_AML_T0034_002 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0034_002 .
+
+cosai:riskRunawayAgentToolLoops skos:closeMatch cosai:term_owasp_top10_llm_LLM10_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM10_2025 .
+
+cosai:riskAgenticDelegationConfusedDeputy skos:relatedMatch cosai:term_stride_ElevationOfPrivilege ;
+    cosai:mapsTo cosai:term_stride_ElevationOfPrivilege .
+
+cosai:riskAgenticDelegationConfusedDeputy skos:relatedMatch cosai:term_stride_Spoofing ;
+    cosai:mapsTo cosai:term_stride_Spoofing .
+
+cosai:riskAgenticDelegationConfusedDeputy skos:closeMatch cosai:term_mitre_atlas_AML_T0053 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0053 .
+
+cosai:riskAgenticDelegationConfusedDeputy skos:closeMatch cosai:term_owasp_top10_llm_LLM06_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM06_2025 .
+
+cosai:riskCrossTenantCredentialPropagation skos:relatedMatch cosai:term_stride_ElevationOfPrivilege ;
+    cosai:mapsTo cosai:term_stride_ElevationOfPrivilege .
+
+cosai:riskCrossTenantCredentialPropagation skos:relatedMatch cosai:term_stride_InformationDisclosure ;
+    cosai:mapsTo cosai:term_stride_InformationDisclosure .
+
+cosai:riskCrossTenantCredentialPropagation skos:closeMatch cosai:term_mitre_atlas_AML_T0012 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0012 .
+
+cosai:riskCrossTenantCredentialPropagation skos:closeMatch cosai:term_mitre_atlas_AML_T0055 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0055 .
+
+cosai:riskCrossTenantCredentialPropagation skos:closeMatch cosai:term_owasp_top10_llm_LLM06_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM06_2025 .
+
+cosai:riskZombieShadowMCPServers skos:relatedMatch cosai:term_stride_Spoofing ;
+    cosai:mapsTo cosai:term_stride_Spoofing .
+
+cosai:riskZombieShadowMCPServers skos:relatedMatch cosai:term_stride_Tampering ;
+    cosai:mapsTo cosai:term_stride_Tampering .
+
+cosai:riskZombieShadowMCPServers skos:relatedMatch cosai:term_stride_InformationDisclosure ;
+    cosai:mapsTo cosai:term_stride_InformationDisclosure .
+
+cosai:riskZombieShadowMCPServers skos:closeMatch cosai:term_mitre_atlas_AML_T0010_001 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_T0010_001 .
+
+cosai:riskZombieShadowMCPServers skos:closeMatch cosai:term_owasp_top10_llm_LLM03_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM03_2025 .
+
+cosai:controlTrainingDataSanitization skos:closeMatch cosai:term_mitre_atlas_AML_M0007 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_M0007 .
+
+cosai:controlModelAndDataIntegrityManagement skos:closeMatch cosai:term_mitre_atlas_AML_M0013 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_M0013 .
+
+cosai:controlModelAndDataIntegrityManagement skos:closeMatch cosai:term_mitre_atlas_AML_M0014 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_M0014 .
+
+cosai:controlModelAndDataIntegrityManagement skos:relatedMatch cosai:term_nist_ai_rmf_MEASURE_2_3 ;
+    cosai:mapsTo cosai:term_nist_ai_rmf_MEASURE_2_3 .
+
+cosai:controlSecureByDefaultMLTooling skos:closeMatch cosai:term_mitre_atlas_AML_M0011 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_M0011 .
+
+cosai:controlInputValidationAndSanitization skos:closeMatch cosai:term_mitre_atlas_AML_M0010 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_M0010 .
+
+cosai:controlInputValidationAndSanitization skos:closeMatch cosai:term_mitre_atlas_AML_M0015 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_M0015 .
+
+cosai:controlInputValidationAndSanitization skos:closeMatch cosai:term_mitre_atlas_AML_M0020 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_M0020 .
+
+cosai:controlInputValidationAndSanitization skos:closeMatch cosai:term_mitre_atlas_AML_M0024 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_M0024 .
+
+cosai:controlInputValidationAndSanitization skos:closeMatch cosai:term_owasp_top10_llm_LLM01_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM01_2025 .
+
+cosai:controlOutputValidationAndSanitization skos:closeMatch cosai:term_mitre_atlas_AML_M0020 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_M0020 .
+
+cosai:controlOutputValidationAndSanitization skos:closeMatch cosai:term_mitre_atlas_AML_M0024 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_M0024 .
+
+cosai:controlOutputValidationAndSanitization skos:closeMatch cosai:term_owasp_top10_llm_LLM02_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM02_2025 .
+
+cosai:controlOutputValidationAndSanitization skos:closeMatch cosai:term_owasp_top10_llm_LLM05_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM05_2025 .
+
+cosai:controlAdversarialTrainingAndTesting skos:closeMatch cosai:term_mitre_atlas_AML_M0003 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_M0003 .
+
+cosai:controlAdversarialTrainingAndTesting skos:closeMatch cosai:term_mitre_atlas_AML_M0006 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_M0006 .
+
+cosai:controlAdversarialTrainingAndTesting skos:closeMatch cosai:term_mitre_atlas_AML_M0008 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_M0008 .
+
+cosai:controlApplicationAccessManagement skos:closeMatch cosai:term_mitre_atlas_AML_M0019 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_M0019 .
+
+cosai:controlApplicationAccessManagement skos:closeMatch cosai:term_owasp_top10_llm_LLM10_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM10_2025 .
+
+cosai:controlAgentPluginPermissions skos:closeMatch cosai:term_mitre_atlas_AML_M0028 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_M0028 .
+
+cosai:controlAgentPluginPermissions skos:relatedMatch cosai:term_nist_ai_rmf_MEASURE_2_11 ;
+    cosai:mapsTo cosai:term_nist_ai_rmf_MEASURE_2_11 .
+
+cosai:controlAgentPluginPermissions skos:relatedMatch cosai:term_nist_ai_rmf_GOVERN_6_2 ;
+    cosai:mapsTo cosai:term_nist_ai_rmf_GOVERN_6_2 .
+
+cosai:controlAgentPluginPermissions skos:closeMatch cosai:term_owasp_top10_llm_LLM06_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM06_2025 .
+
+cosai:controlAgentInventoryManagement skos:relatedMatch cosai:term_nist_ai_rmf_GOVERN_1_6 ;
+    cosai:mapsTo cosai:term_nist_ai_rmf_GOVERN_1_6 .
+
+cosai:controlAgentInventoryManagement skos:relatedMatch cosai:term_nist_ai_rmf_MAP_3_4 ;
+    cosai:mapsTo cosai:term_nist_ai_rmf_MAP_3_4 .
+
+cosai:controlAgentIntegrityManagement skos:closeMatch cosai:term_mitre_atlas_AML_M0013 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_M0013 .
+
+cosai:controlAgentIntegrityManagement skos:relatedMatch cosai:term_nist_ai_rmf_MAP_3_4 ;
+    cosai:mapsTo cosai:term_nist_ai_rmf_MAP_3_4 .
+
+cosai:controlAgentIntegrityManagement skos:relatedMatch cosai:term_nist_ai_rmf_MEASURE_2_9 ;
+    cosai:mapsTo cosai:term_nist_ai_rmf_MEASURE_2_9 .
+
+cosai:controlAgentCredentialIsolation skos:closeMatch cosai:term_owasp_top10_llm_LLM06_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM06_2025 .
+
+cosai:controlAgentCredentialIsolation skos:relatedMatch cosai:term_nist_ai_rmf_MEASURE_2_10 ;
+    cosai:mapsTo cosai:term_nist_ai_rmf_MEASURE_2_10 .
+
+cosai:controlAgentCredentialIsolation skos:relatedMatch cosai:term_nist_ai_rmf_GOVERN_6_2 ;
+    cosai:mapsTo cosai:term_nist_ai_rmf_GOVERN_6_2 .
+
+cosai:controlInterComponentTransportSecurity skos:relatedMatch cosai:term_nist_ai_rmf_MEASURE_2_7 ;
+    cosai:mapsTo cosai:term_nist_ai_rmf_MEASURE_2_7 .
+
+cosai:controlInterComponentTransportSecurity skos:relatedMatch cosai:term_nist_ai_rmf_MAP_3_4 ;
+    cosai:mapsTo cosai:term_nist_ai_rmf_MAP_3_4 .
+
+cosai:controlInterComponentTransportSecurity skos:closeMatch cosai:term_owasp_top10_llm_LLM03_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM03_2025 .
+
+cosai:controlComponentIdentityProvenance skos:relatedMatch cosai:term_nist_ai_rmf_MAP_3_4 ;
+    cosai:mapsTo cosai:term_nist_ai_rmf_MAP_3_4 .
+
+cosai:controlComponentIdentityProvenance skos:relatedMatch cosai:term_nist_ai_rmf_MEASURE_2_7 ;
+    cosai:mapsTo cosai:term_nist_ai_rmf_MEASURE_2_7 .
+
+cosai:controlAgentExecutionBounds skos:closeMatch cosai:term_owasp_top10_llm_LLM10_2025 ;
+    cosai:mapsTo cosai:term_owasp_top10_llm_LLM10_2025 .
+
+cosai:controlAgentExecutionBounds skos:closeMatch cosai:term_mitre_atlas_AML_M0004 ;
+    cosai:mapsTo cosai:term_mitre_atlas_AML_M0004 .
+
+cosai:controlAgentExecutionBounds skos:relatedMatch cosai:term_nist_ai_rmf_MEASURE_2_6 ;
+    cosai:mapsTo cosai:term_nist_ai_rmf_MEASURE_2_6 .
+
+cosai:controlAgentExecutionBounds skos:relatedMatch cosai:term_nist_ai_rmf_MANAGE_2_1 ;
+    cosai:mapsTo cosai:term_nist_ai_rmf_MANAGE_2_1 .
+
+cosai:personaModelProvider skos:relatedMatch cosai:term_iso_22989_AI_Producer ;
+    cosai:mapsTo cosai:term_iso_22989_AI_Producer .
+
+cosai:personaDataProvider skos:relatedMatch cosai:term_iso_22989_AI_Partner_data_supplier ;
+    cosai:mapsTo cosai:term_iso_22989_AI_Partner_data_supplier .
+
+cosai:personaPlatformProvider skos:relatedMatch cosai:term_iso_22989_AI_Partner_infrastructure_provider ;
+    cosai:mapsTo cosai:term_iso_22989_AI_Partner_infrastructure_provider .
+
+cosai:personaAgenticProvider skos:relatedMatch cosai:term_iso_22989_AI_Partner_tooling_provider ;
+    cosai:mapsTo cosai:term_iso_22989_AI_Partner_tooling_provider .
+
+cosai:personaApplicationDeveloper skos:relatedMatch cosai:term_iso_22989_AI_Customer_application_builder ;
+    cosai:mapsTo cosai:term_iso_22989_AI_Customer_application_builder .
+
+cosai:personaEndUser skos:relatedMatch cosai:term_iso_22989_AI_Customer_end_user ;
+    cosai:mapsTo cosai:term_iso_22989_AI_Customer_end_user .
+

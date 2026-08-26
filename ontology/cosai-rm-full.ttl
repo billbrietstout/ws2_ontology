@@ -1,0 +1,15 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<https://cosai-oasis.github.io/ontology/cosai-rm/full> a owl:Ontology ;
+    owl:versionIRI <https://cosai-oasis.github.io/ontology/cosai-rm/full/0.1.0> ;
+    owl:imports <https://cosai-oasis.github.io/ontology/cosai-rm> ,
+        <https://cosai-oasis.github.io/ontology/cosai-rm/catalog> ,
+        <https://cosai-oasis.github.io/ontology/cosai-rm/alignments/bfo> ,
+        <https://cosai-oasis.github.io/ontology/cosai-rm/alignments/d3fend> ,
+        <https://cosai-oasis.github.io/ontology/cosai-rm/alignments/spdx-3.1> ,
+        <https://cosai-oasis.github.io/ontology/cosai-rm/alignments/frameworks> ,
+        <https://cosai-oasis.github.io/ontology/cosai-rm/alignments/opencre> ;
+    dcterms:title "CoSAI-RM ontology with catalog and alignments"@en ;
+    rdfs:comment "Union graph for SPARQL. Imports CoSAI TBox, catalog individuals, and SKOS/MIREOT alignments. Does not import D3FEND or SPDX OWL distributions."@en .

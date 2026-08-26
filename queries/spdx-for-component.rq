@@ -1,0 +1,12 @@
+PREFIX cosai: <https://cosai-oasis.github.io/ontology/cosai-rm#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?component ?label ?spdxClass
+WHERE {
+  ?component a cosai:Component ;
+             rdfs:label ?label ;
+             skos:closeMatch|skos:relatedMatch ?spdxClass .
+  FILTER(STRSTARTS(STR(?spdxClass), "https://spdx.org/rdf/3.1/"))
+}
+ORDER BY ?label

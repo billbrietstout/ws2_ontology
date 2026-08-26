@@ -1,0 +1,124 @@
+{
+  "schema_version": "0.1",
+  "framework": "CoSAI AI Jailbreak Prevention Framework",
+  "framework_id": "JPF",
+  "version": "0.1",
+  "note": "CJS scoring tables live in the Anthropic sources. JPF imports the CJS band and does not re-author those axes.",
+  "references": [
+    {
+      "id": "anthropic-fable5-redeploy",
+      "title": "Redeploying Fable 5",
+      "authors": "Anthropic",
+      "date": "2026-06-30",
+      "url": "https://www.anthropic.com/news/redeploying-fable-5",
+      "role": "primary",
+      "used_for": [
+        "Asks for a shared industry jailbreak-severity standard (section 3).",
+        "Names Amazon, Microsoft, Google, and other Glasswing partners as drafters.",
+        "Defines jailbreak as a technique that bypasses a model's safeguards; footnote 2 treats bypass as a synonym for that work.",
+        "Describes defense in depth: refusal training, classifiers, offline monitoring, and a safety margin that blocks some benign and low-risk dual-use requests.",
+        "Classifies reported Fable 5 bypasses to date as minor (safety-margin intrusion), versus narrow harmful and universal jailbreaks.",
+        "Proposes four severity axes: capability gain, breadth of capability gain, ease of weaponization, discoverability.",
+        "States that the most severe class, if in active use against critical infrastructure, triggers immediate preliminary mitigations, plus 24/7 watch on submission channels.",
+        "Analogizes to CVSS for software vulnerabilities (footnote 4)."
+      ]
+    },
+    {
+      "id": "anthropic-cjs-draft",
+      "title": "More details on Fable 5’s cyber safeguards and our jailbreak framework",
+      "authors": "Anthropic",
+      "date": "2026-07-02",
+      "url": "https://www.anthropic.com/news/fable-safeguards-jailbreak-framework",
+      "role": "primary",
+      "used_for": [
+        "Publishes the draft Cyber Jailbreak Severity (CJS) scale, CJS-0 through CJS-4.",
+        "Publishes numeric rubrics for the four axes and the sum-to-band table.",
+        "Capability gain of 0 stops scoring; the finding is CJS-0.",
+        "The computed band is a floor; it may be raised, never lowered.",
+        "Separates high-risk dual use from harm by who is doing the work and under what authorization, then scores the prompt technique without that context.",
+        "Puts system-prompt extraction out of CJS cyber scope.",
+        "Opens a HackerOne channel for Fable 5 cyber jailbreaks."
+      ]
+    },
+    {
+      "id": "cosai-srf-v1",
+      "title": "AI Shared Responsibility Framework, V1.0",
+      "authors": "Coalition for Secure AI, Workstream 2",
+      "date": "2026-05",
+      "url": "https://www.coalitionforsecureai.org/wp-content/uploads/2026/05/CoSAI-Shared-Responsibility-Framework.pdf",
+      "role": "normative-local",
+      "used_for": [
+        "Five layers L1 to L5 and eight personas.",
+        "Exactly one accountable party per control.",
+        "Attestation artifacts per layer."
+      ]
+    },
+    {
+      "id": "cosai-ir-v1",
+      "title": "AI Incident Response Framework, V1.0",
+      "authors": "Coalition for Secure AI, Workstream 2",
+      "date": "2025-11",
+      "url": "https://www.coalitionforsecureai.org/wp-content/uploads/2026/03/AI-Incident-Response-1.pdf",
+      "role": "normative-local",
+      "used_for": [
+        "Lists jailbreaking as an operator incident type under manipulating model behavior.",
+        "Keeps prompt injection and indirect prompt injection as separate incident types.",
+        "JPF operational class is an input to that intake, not a replacement playbook."
+      ]
+    },
+    {
+      "id": "cosai-charter",
+      "title": "CoSAI OASIS Open Project Charter",
+      "authors": "Coalition for Secure AI",
+      "url": "https://github.com/cosai-oasis/oasis-open-project/blob/main/CHARTER.md",
+      "role": "scope",
+      "used_for": [
+        "In scope: securely building, integrating, deploying, and operating AI systems; prompt injection; model theft; poisoning; scaled abuse; inference attacks.",
+        "Out of scope: malware generation, phishing generation, misinformation, bias, and other content safety as such."
+      ]
+    },
+    {
+      "id": "cvss",
+      "title": "Common Vulnerability Scoring System",
+      "authors": "FIRST",
+      "url": "https://www.first.org/cvss/",
+      "role": "analogy",
+      "used_for": [
+        "Base score plus environmental score. CJS as drafted is base plus a temporal-like discoverability axis. JPF supplies the missing environmental modifier for deployed systems."
+      ]
+    },
+    {
+      "id": "stout-hf-recommendations",
+      "title": "Recommendations from the Hugging Face Autonomous Attack",
+      "authors": "Bill Stout",
+      "date": "2026-07-27",
+      "url": "https://www.linkedin.com/pulse/recommendations-from-hugging-face-autonomous-attack-bill-stout-el4ic",
+      "role": "incident-derived",
+      "used_for": [
+        "HITL is not viable for most agentic use cases; hard gates stay on high-impact or irreversible actions, everything else is automatic. Supports ENV hitl_window = 2 as the default for autonomous agents.",
+        "Named human owner with pre-authorized shutdown authority. Supports JPF-L1-004.",
+        "Instrument the agent (tool use, decision path), not only the network boundary. Supports JPF-L4-003 path attestation.",
+        "Distinct non-human identity per agent; no shared account. Supports JPF-L3-001.",
+        "Sandbox isolation is untested until tested; the models escaped on the one permitted egress path.",
+        "Containment must confirm the agent has stopped acting, not only that it is unreachable. Added to O-2 and above.",
+        "Closed-weight models with cyber guardrails refused defender forensics; an open-weight fallback was required. Distinct from CJS scoring of attacker bypasses."
+      ]
+    },
+    {
+      "id": "stout-openai-hf-accountability",
+      "title": "Who is responsible for what: An accountability assessment of the OpenAI Hugging Face incident",
+      "authors": "Bill Stout",
+      "date": "2026-08-14",
+      "url": "https://www.linkedin.com/pulse/who-responsible-what-accountability-assessment-openai-bill-stout-s1dsc/",
+      "role": "incident-derived",
+      "used_for": [
+        "Production cyber classifiers were off so the lab could measure capability. CJS does not apply when the safeguard being scored is disabled. O is taken from ENV.",
+        "Classifier-off evals require a residual-risk statement that names third-party production systems before refusals are removed.",
+        "Eval session A wrote objects (Artifactory files, then directory names on WebDAV) that session B could read. That is ENV persistence 2 and a session-isolation miss; JPF-L4-004 only tests tenant A versus tenant B.",
+        "SRF layer assignment of the failures: L1 eval policy and incident declaration, L3 harness and untrusted parsers, L4 sandbox isolation and shared caches.",
+        "NIST CSF 2.0 does not name agent sessions as an identity class, covert channels on permitted shared services, or classifier-off cyber evals. JPF ENV axes cover those three.",
+        "Compensating control when classifiers are off is agent reach: privileges the agent can mint, and systems it can talk to."
+      ]
+    }
+  ]
+}

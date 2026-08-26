@@ -1,0 +1,126 @@
+@prefix cosai: <https://cosai-oasis.github.io/ontology/cosai-rm#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix spdx: <https://spdx.org/rdf/3.1/terms/> .
+@prefix spdxai: <https://spdx.org/rdf/3.1/terms/AI/> .
+@prefix spdxcore: <https://spdx.org/rdf/3.1/terms/Core/> .
+@prefix spdxds: <https://spdx.org/rdf/3.1/terms/Dataset/> .
+@prefix spdxsec: <https://spdx.org/rdf/3.1/terms/Security/> .
+@prefix spdxsw: <https://spdx.org/rdf/3.1/terms/Software/> .
+@prefix spdxsvc: <https://spdx.org/rdf/3.1/terms/Service/> .
+
+<https://cosai-oasis.github.io/ontology/cosai-rm/alignments/spdx-3.1> a owl:Ontology ;
+    owl:imports <https://cosai-oasis.github.io/ontology/cosai-rm/catalog> ;
+    dcterms:title "CoSAI-RM to SPDX 3.1 alignment"@en ;
+    owl:versionInfo "SPDX 3.1" ;
+    dcterms:source <https://spdx.org/rdf/3.1/spdx-model.ttl> ;
+    rdfs:comment "SKOS matches from CoSAI-RM catalog individuals to SPDX 3.1 classes in the Core, Software, Dataset, AI, Security, and Service profiles. This file does not owl:imports the SPDX model. Match strength is closeMatch when the CoSAI component is the kind of thing that class records, relatedMatch when the SPDX class is the evidence artifact a control produces or consumes."@en .
+
+#################################################################
+# MIREOT: SPDX 3.1 classes
+#################################################################
+
+spdxai:AIPackage a owl:Class ;
+    rdfs:label "AI package"@en ;
+    rdfs:comment "A Package that contains AI software or an AI model."@en ;
+    rdfs:subClassOf spdxsw:Package .
+
+spdxds:DatasetPackage a owl:Class ;
+    rdfs:label "dataset package"@en ;
+    rdfs:comment "A Package that contains a dataset."@en ;
+    rdfs:subClassOf spdxsw:Package .
+
+spdxsw:Package a owl:Class ;
+    rdfs:label "package"@en ;
+    rdfs:subClassOf spdxsw:SoftwareArtifact .
+
+spdxsw:SoftwareArtifact a owl:Class ;
+    rdfs:label "software artifact"@en ;
+    rdfs:subClassOf spdxcore:Artifact .
+
+spdxsw:File a owl:Class ;
+    rdfs:label "file"@en ;
+    rdfs:subClassOf spdxsw:SoftwareArtifact .
+
+spdxsw:Sbom a owl:Class ;
+    rdfs:label "SBOM"@en .
+
+spdxcore:Artifact a owl:Class ;
+    rdfs:label "artifact"@en ;
+    rdfs:subClassOf spdxcore:Element .
+
+spdxcore:Element a owl:Class ;
+    rdfs:label "element"@en .
+
+spdxcore:Agent a owl:Class ;
+    rdfs:label "agent"@en ;
+    rdfs:comment "Anything with the potential to act on a system."@en ;
+    rdfs:subClassOf spdxcore:Element .
+
+spdxcore:Hash a owl:Class ;
+    rdfs:label "hash"@en .
+
+spdxcore:IntegrityMethod a owl:Class ;
+    rdfs:label "integrity method"@en .
+
+spdxsec:Vulnerability a owl:Class ;
+    rdfs:label "vulnerability"@en ;
+    rdfs:subClassOf spdxcore:Artifact .
+
+spdxsvc:SoftwareService a owl:Class ;
+    rdfs:label "software service"@en .
+
+#################################################################
+# Components -> SPDX artifact types
+#################################################################
+
+cosai:componentTheModel skos:closeMatch spdxai:AIPackage .
+cosai:componentModelFrameworksAndCode skos:closeMatch spdxsw:Package .
+cosai:componentTrainingData skos:closeMatch spdxds:DatasetPackage .
+cosai:componentDataSources skos:closeMatch spdxds:DatasetPackage .
+cosai:componentRAGContent skos:closeMatch spdxds:DatasetPackage .
+cosai:componentApplication skos:closeMatch spdxsw:Package .
+cosai:componentTools skos:relatedMatch spdxsvc:SoftwareService, spdxsw:Package .
+cosai:componentModelServing skos:relatedMatch spdxsvc:SoftwareService .
+cosai:componentDataStorage skos:relatedMatch spdxcore:Artifact .
+cosai:componentModelStorage skos:relatedMatch spdxcore:Artifact, spdxsw:File .
+cosai:componentMemory skos:relatedMatch spdxcore:Artifact .
+cosai:componentAgentSystemInstruction skos:relatedMatch spdxsw:File .
+
+#################################################################
+# Controls that produce or consume SPDX evidence
+#################################################################
+
+cosai:controlModelAndDataIntegrityManagement skos:relatedMatch spdxcore:IntegrityMethod, spdxcore:Hash .
+cosai:controlModelAndDataExecutionIntegrity skos:relatedMatch spdxcore:IntegrityMethod, spdxcore:Hash .
+cosai:controlModelAndDataInventoryManagement skos:relatedMatch spdxsw:Sbom .
+cosai:controlAgentInventoryManagement skos:relatedMatch spdxsw:Sbom .
+cosai:controlComponentIdentityProvenance skos:relatedMatch spdxcore:IntegrityMethod .
+cosai:controlVulnerabilityManagement skos:relatedMatch spdxsec:Vulnerability .
+cosai:controlTrainingDataManagement skos:relatedMatch spdxds:DatasetPackage .
+cosai:controlRetrievalAndVectorSystemIntegrity skos:relatedMatch spdxcore:Hash, spdxds:DatasetPackage .
+
+#################################################################
+# Personas -> SPDX Agent
+#################################################################
+
+cosai:personaModelProvider skos:relatedMatch spdxcore:Agent .
+cosai:personaDataProvider skos:relatedMatch spdxcore:Agent .
+cosai:personaPlatformProvider skos:relatedMatch spdxcore:Agent .
+cosai:personaModelServing skos:relatedMatch spdxcore:Agent .
+cosai:personaAgenticProvider skos:relatedMatch spdxcore:Agent .
+cosai:personaApplicationDeveloper skos:relatedMatch spdxcore:Agent .
+cosai:personaGovernance skos:relatedMatch spdxcore:Agent .
+cosai:personaEndUser skos:relatedMatch spdxcore:Agent .
+
+#################################################################
+# Risks that SPDX Security can record as findings
+#################################################################
+
+cosai:riskInsecureIntegratedComponent skos:relatedMatch spdxsec:Vulnerability .
+cosai:riskMaliciousLoaderDeserialization skos:relatedMatch spdxsec:Vulnerability .
+cosai:riskModelSourceTampering skos:relatedMatch spdxsec:Vulnerability .
+cosai:riskModelExfiltration skos:relatedMatch spdxsec:Vulnerability .

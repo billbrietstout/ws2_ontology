@@ -1,0 +1,275 @@
+@prefix cosai: <https://cosai-oasis.github.io/ontology/cosai-rm#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://cosai-oasis.github.io/ontology/cosai-rm> a owl:Ontology ;
+    owl:versionIRI <https://cosai-oasis.github.io/ontology/cosai-rm/0.1.0> ;
+    owl:versionInfo "0.1.0" ;
+    dcterms:title "CoSAI Risk Map Ontology"@en ;
+    dcterms:created "2026-08-25"^^xsd:date ;
+    dcterms:license <https://www.apache.org/licenses/LICENSE-2.0> ;
+    dcterms:source <https://github.com/cosai-oasis/secure-ai-tooling/issues/388> ;
+    vann:preferredNamespacePrefix "cosai" ;
+    vann:preferredNamespaceUri "https://cosai-oasis.github.io/ontology/cosai-rm#" ;
+    rdfs:comment "TBox for the Coalition for Secure AI Risk Map. Catalog rows are named individuals in catalog.ttl. Crosswalks to OpenCRE, BFO, D3FEND, and SPDX 3.1 live in ontology/alignments and use SKOS matching rather than owl:equivalentClass."@en .
+
+#################################################################
+# Annotation properties
+#################################################################
+
+cosai:alignmentMethod a owl:AnnotationProperty ;
+    rdfs:label "alignment method"@en ;
+    rdfs:comment "How an alignment triple was produced: curated, transitive-join, or native-yaml."@en .
+
+cosai:alignmentVia a owl:AnnotationProperty ;
+    rdfs:label "alignment via"@en ;
+    rdfs:comment "Intermediate standard used in a transitive join, such as mitre-atlas or owasp-top10-llm."@en .
+
+cosai:alignmentSubject a owl:ObjectProperty ;
+    rdfs:label "alignment subject"@en ;
+    rdfs:domain cosai:AlignmentAssertion ;
+    rdfs:range owl:Thing .
+
+cosai:alignmentObject a owl:ObjectProperty ;
+    rdfs:label "alignment object"@en ;
+    rdfs:domain cosai:AlignmentAssertion .
+
+cosai:describesBfoClass a owl:AnnotationProperty ;
+    rdfs:label "describes BFO class"@en ;
+    rdfs:comment "BFO class of the world entity that a catalog entry describes. This is an annotation, not an OWL superclass, so reasoners do not import BFO axioms."@en .
+
+#################################################################
+# Catalog versus world
+#################################################################
+
+cosai:CatalogEntry a owl:Class ;
+    rdfs:label "catalog entry"@en ;
+    rdfs:comment "A published CoSAI-RM record. The record is an information content entity. It describes a kind of risk, control, component, or persona in the world; it is not itself that world entity. BFO and IAO placement is in alignments/bfo.ttl."@en .
+
+cosai:AlignmentAssertion a owl:Class ;
+    rdfs:label "alignment assertion"@en ;
+    rdfs:subClassOf cosai:CatalogEntry ;
+    rdfs:comment "Provenance record for one SKOS match between a CoSAI catalog entry and an external concept."@en .
+
+#################################################################
+# Risk
+#################################################################
+
+cosai:Risk a owl:Class ;
+    rdfs:label "risk"@en ;
+    rdfs:subClassOf cosai:CatalogEntry ;
+    rdfs:comment "A catalogued AI security risk. A risk entry describes a disposition of an AI system to participate in a harmful process under stated conditions."@en .
+
+cosai:SupplyChainAndDevelopmentRisk a owl:Class ;
+    rdfs:label "supply chain and development risk"@en ;
+    rdfs:subClassOf cosai:Risk .
+
+cosai:DeploymentAndInfrastructureRisk a owl:Class ;
+    rdfs:label "deployment and infrastructure risk"@en ;
+    rdfs:subClassOf cosai:Risk .
+
+cosai:RuntimeInputSecurityRisk a owl:Class ;
+    rdfs:label "runtime input security risk"@en ;
+    rdfs:subClassOf cosai:Risk .
+
+cosai:RuntimeDataSecurityRisk a owl:Class ;
+    rdfs:label "runtime data security risk"@en ;
+    rdfs:subClassOf cosai:Risk .
+
+cosai:RuntimeOutputSecurityRisk a owl:Class ;
+    rdfs:label "runtime output security risk"@en ;
+    rdfs:subClassOf cosai:Risk .
+
+cosai:RiskDisposition a owl:Class ;
+    rdfs:label "risk disposition"@en ;
+    rdfs:comment "Optional world-level class for a particular system's disposition to a catalogued risk. Not populated in the catalog graph. Link a disposition to its catalog entry with cosai:exemplifies."@en .
+
+#################################################################
+# Control
+#################################################################
+
+cosai:Control a owl:Class ;
+    rdfs:label "control"@en ;
+    rdfs:subClassOf cosai:CatalogEntry ;
+    rdfs:comment "A catalogued security measure that a named persona can enact to mitigate one or more risks on named components."@en .
+
+cosai:DataControl a owl:Class ;
+    rdfs:label "data control"@en ;
+    rdfs:subClassOf cosai:Control .
+
+cosai:InfrastructureControl a owl:Class ;
+    rdfs:label "infrastructure control"@en ;
+    rdfs:subClassOf cosai:Control .
+
+cosai:ModelControl a owl:Class ;
+    rdfs:label "model control"@en ;
+    rdfs:subClassOf cosai:Control .
+
+cosai:ApplicationControl a owl:Class ;
+    rdfs:label "application control"@en ;
+    rdfs:subClassOf cosai:Control .
+
+cosai:AssuranceControl a owl:Class ;
+    rdfs:label "assurance control"@en ;
+    rdfs:subClassOf cosai:Control .
+
+cosai:GovernanceControl a owl:Class ;
+    rdfs:label "governance control"@en ;
+    rdfs:subClassOf cosai:Control .
+
+cosai:ControlImplementation a owl:Class ;
+    rdfs:label "control implementation"@en ;
+    rdfs:comment "Optional world-level class for a process that enacts a catalogued control in a deployed system. Link with cosai:exemplifies."@en .
+
+#################################################################
+# Component
+#################################################################
+
+cosai:Component a owl:Class ;
+    rdfs:label "component"@en ;
+    rdfs:subClassOf cosai:CatalogEntry ;
+    rdfs:comment "A catalogued building block of an AI system. Individual components are further typed as infrastructure, model, or application. The denoted world entity may be a material entity, a generically dependent continuant, or a process; see cosai:describesBfoClass."@en .
+
+cosai:InfrastructureComponent a owl:Class ;
+    rdfs:label "infrastructure component"@en ;
+    rdfs:subClassOf cosai:Component .
+
+cosai:ModelComponent a owl:Class ;
+    rdfs:label "model component"@en ;
+    rdfs:subClassOf cosai:Component .
+
+cosai:ApplicationComponent a owl:Class ;
+    rdfs:label "application component"@en ;
+    rdfs:subClassOf cosai:Component .
+
+#################################################################
+# Persona
+#################################################################
+
+cosai:Persona a owl:Class ;
+    rdfs:label "persona"@en ;
+    rdfs:subClassOf cosai:CatalogEntry ;
+    rdfs:comment "A catalogued role in the AI lifecycle. The catalog entry describes a BFO role borne by an organization or person; it is not itself that agent."@en .
+
+cosai:PersonaRole a owl:Class ;
+    rdfs:label "persona role"@en ;
+    rdfs:comment "Optional world-level class for the role borne by a particular agent. Link with cosai:exemplifies."@en .
+
+#################################################################
+# Supporting vocabularies
+#################################################################
+
+cosai:LifecycleStage a owl:Class ;
+    rdfs:label "lifecycle stage"@en ;
+    rdfs:subClassOf cosai:CatalogEntry ;
+    rdfs:comment "A named phase of AI system planning, data preparation, training, development, evaluation, deployment, runtime, or maintenance."@en .
+
+cosai:ImpactType a owl:Class ;
+    rdfs:label "impact type"@en ;
+    rdfs:subClassOf cosai:CatalogEntry ;
+    rdfs:comment "A category of harm used to classify a risk or control, such as confidentiality, integrity, availability, privacy, or safety."@en .
+
+cosai:ActorAccessLevel a owl:Class ;
+    rdfs:label "actor access level"@en ;
+    rdfs:subClassOf cosai:CatalogEntry ;
+    rdfs:comment "The kind of system access a threat actor needs to realize a risk."@en .
+
+cosai:Framework a owl:Class ;
+    rdfs:label "framework"@en ;
+    rdfs:subClassOf cosai:CatalogEntry ;
+    rdfs:comment "An external standard or knowledge base that CoSAI-RM maps into."@en .
+
+cosai:FrameworkTerm a owl:Class ;
+    rdfs:label "framework term"@en ;
+    rdfs:subClassOf cosai:CatalogEntry ;
+    rdfs:comment "A native identifier in an external framework, such as AML.T0020 or LLM01:2025."@en .
+
+#################################################################
+# Object properties
+#################################################################
+
+cosai:mitigates a owl:ObjectProperty ;
+    rdfs:label "mitigates"@en ;
+    rdfs:domain cosai:Control ;
+    rdfs:range cosai:Risk ;
+    owl:inverseOf cosai:mitigatedBy ;
+    rdfs:comment "A control mitigates a risk when enacting the control reduces the chance or impact of that risk."@en .
+
+cosai:mitigatedBy a owl:ObjectProperty ;
+    rdfs:label "mitigated by"@en ;
+    rdfs:domain cosai:Risk ;
+    rdfs:range cosai:Control .
+
+cosai:protects a owl:ObjectProperty ;
+    rdfs:label "protects"@en ;
+    rdfs:domain cosai:Control ;
+    rdfs:range cosai:Component ;
+    rdfs:comment "A control protects a component when the control is applied at that component."@en .
+
+cosai:affectsPersona a owl:ObjectProperty ;
+    rdfs:label "affects persona"@en ;
+    rdfs:domain cosai:Risk ;
+    rdfs:range cosai:Persona ;
+    rdfs:comment "A risk affects a persona when that persona is impacted by the risk or is responsible for mitigating it."@en .
+
+cosai:enactedBy a owl:ObjectProperty ;
+    rdfs:label "enacted by"@en ;
+    rdfs:domain cosai:Control ;
+    rdfs:range cosai:Persona ;
+    rdfs:comment "A control is enacted by a persona when that persona owns implementation of the control."@en .
+
+cosai:feeds a owl:ObjectProperty ;
+    rdfs:label "feeds"@en ;
+    rdfs:domain cosai:Component ;
+    rdfs:range cosai:Component ;
+    owl:inverseOf cosai:fedBy ;
+    rdfs:comment "Directed edge from the CoSAI-RM component graph: output of one component is input to another."@en .
+
+cosai:fedBy a owl:ObjectProperty ;
+    rdfs:label "fed by"@en ;
+    rdfs:domain cosai:Component ;
+    rdfs:range cosai:Component .
+
+cosai:inLifecycleStage a owl:ObjectProperty ;
+    rdfs:label "in lifecycle stage"@en ;
+    rdfs:domain cosai:CatalogEntry ;
+    rdfs:range cosai:LifecycleStage .
+
+cosai:hasImpactType a owl:ObjectProperty ;
+    rdfs:label "has impact type"@en ;
+    rdfs:domain cosai:CatalogEntry ;
+    rdfs:range cosai:ImpactType .
+
+cosai:requiresActorAccess a owl:ObjectProperty ;
+    rdfs:label "requires actor access"@en ;
+    rdfs:domain cosai:Risk ;
+    rdfs:range cosai:ActorAccessLevel .
+
+cosai:mapsTo a owl:ObjectProperty ;
+    rdfs:label "maps to"@en ;
+    rdfs:domain cosai:CatalogEntry ;
+    rdfs:range cosai:FrameworkTerm ;
+    rdfs:comment "Native CoSAI-RM framework mapping copied from YAML. SKOS match properties on the same pair record match strength."@en .
+
+cosai:inFramework a owl:ObjectProperty ;
+    rdfs:label "in framework"@en ;
+    rdfs:domain cosai:FrameworkTerm ;
+    rdfs:range cosai:Framework .
+
+cosai:exemplifies a owl:ObjectProperty ;
+    rdfs:label "exemplifies"@en ;
+    rdfs:comment "Relates a world-level entity (disposition, process, or role) to the catalog entry it instantiates. Unused in the published catalog graph."@en .
+
+#################################################################
+# Datatype properties
+#################################################################
+
+cosai:stageOrder a owl:DatatypeProperty ;
+    rdfs:label "stage order"@en ;
+    rdfs:domain cosai:LifecycleStage ;
+    rdfs:range xsd:integer .

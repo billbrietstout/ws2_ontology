@@ -1,0 +1,26 @@
+PREFIX cosai: <https://cosai-oasis.github.io/ontology/cosai-rm#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?persona ?personaLabel ?control ?controlLabel ?risk ?riskLabel
+WHERE {
+  BIND(cosai:personaApplicationDeveloper AS ?persona)
+  ?persona rdfs:label ?personaLabel .
+  {
+    ?control cosai:enactedBy ?persona ;
+             rdfs:label ?controlLabel .
+    OPTIONAL {
+      ?control cosai:mitigates ?risk .
+      ?risk rdfs:label ?riskLabel .
+    }
+  }
+  UNION
+  {
+    ?risk cosai:affectsPersona ?persona ;
+          rdfs:label ?riskLabel .
+    OPTIONAL {
+      ?control cosai:mitigates ?risk ;
+               rdfs:label ?controlLabel .
+    }
+  }
+}
+ORDER BY ?controlLabel ?riskLabel

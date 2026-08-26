@@ -1,0 +1,12 @@
+PREFIX cosai: <https://cosai-oasis.github.io/ontology/cosai-rm#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?risk ?label ?category
+WHERE {
+  ?risk a cosai:Risk ;
+        rdfs:label ?label ;
+        a ?category .
+  FILTER(?category != cosai:Risk)
+  FILTER(?category != cosai:CatalogEntry)
+}
+ORDER BY ?category ?label

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="public">
+    <uri name="https://cosai-oasis.github.io/ontology/cosai-rm" uri="cosai-rm.ttl"/>
+    <uri name="https://cosai-oasis.github.io/ontology/cosai-rm/catalog" uri="catalog.ttl"/>
+    <uri name="https://cosai-oasis.github.io/ontology/cosai-rm/full" uri="cosai-rm-full.ttl"/>
+    <uri name="https://cosai-oasis.github.io/ontology/cosai-rm/alignments/bfo" uri="alignments/bfo.ttl"/>
+    <uri name="https://cosai-oasis.github.io/ontology/cosai-rm/alignments/d3fend" uri="alignments/d3fend.ttl"/>
+    <uri name="https://cosai-oasis.github.io/ontology/cosai-rm/alignments/spdx-3.1" uri="alignments/spdx-3.1.ttl"/>
+    <uri name="https://cosai-oasis.github.io/ontology/cosai-rm/alignments/frameworks" uri="alignments/frameworks.ttl"/>
+    <uri name="https://cosai-oasis.github.io/ontology/cosai-rm/alignments/opencre" uri="alignments/opencre.ttl"/>
+</catalog>

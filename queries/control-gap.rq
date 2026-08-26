@@ -1,0 +1,12 @@
+PREFIX cosai: <https://cosai-oasis.github.io/ontology/cosai-rm#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?risk ?label (COUNT(?control) AS ?controlCount)
+WHERE {
+  ?risk a cosai:Risk ;
+        rdfs:label ?label .
+  OPTIONAL { ?control cosai:mitigates ?risk }
+}
+GROUP BY ?risk ?label
+HAVING (COUNT(?control) = 0)
+ORDER BY ?label

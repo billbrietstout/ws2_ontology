@@ -1,0 +1,952 @@
+@prefix cosai: <https://cosai-oasis.github.io/ontology/cosai-rm#> .
+@prefix cre: <https://www.opencre.org/cre/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://cosai-oasis.github.io/ontology/cosai-rm/alignments/opencre> a owl:Ontology ;
+    owl:imports <https://cosai-oasis.github.io/ontology/cosai-rm/catalog> ;
+    dcterms:title "CoSAI-RM to OpenCRE alignments"@en ;
+    rdfs:comment "CRE links are inferred from CoSAI native mappings to MITRE ATLAS and OWASP Top 10 for LLM, joined to OpenCRE published links for those standards. Predicate is skos:relatedMatch. Provenance is recorded with dcterms:source and cosai:alignmentMethod."@en .
+
+cre:481-710 a skos:Concept ;
+    skos:prefLabel "AI model poisoning"@en ;
+    dcterms:identifier "481-710" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/481-710> .
+
+cre:615-663 a skos:Concept ;
+    skos:prefLabel "Data poisoning of train/finetune/augmentation data"@en ;
+    dcterms:identifier "615-663" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/615-663> .
+
+cre:020-540 a skos:Concept ;
+    skos:prefLabel "Direct runtime model poisoning"@en ;
+    dcterms:identifier "020-540" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/020-540> .
+
+cre:867-642 a skos:Concept ;
+    skos:prefLabel "Direct development-time model poisoning"@en ;
+    dcterms:identifier "867-642" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/867-642> .
+
+cre:701-654 a skos:Concept ;
+    skos:prefLabel "Supply-chain model poisoning"@en ;
+    dcterms:identifier "701-654" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/701-654> .
+
+cre:044-202 a skos:Concept ;
+    skos:prefLabel "Data disclosure in model output"@en ;
+    dcterms:identifier "044-202" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/044-202> .
+
+cre:034-540 a skos:Concept ;
+    skos:prefLabel "Model inversion / Membership inference"@en ;
+    dcterms:identifier "034-540" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/034-540> .
+
+cre:077-772 a skos:Concept ;
+    skos:prefLabel "Direct training or test data leak"@en ;
+    dcterms:identifier "077-772" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/077-772> .
+
+cre:267-786 a skos:Concept ;
+    skos:prefLabel "Model confidentiality threats"@en ;
+    dcterms:identifier "267-786" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/267-786> .
+
+cre:141-385 a skos:Concept ;
+    skos:prefLabel "Model exfiltration"@en ;
+    dcterms:identifier "141-385" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/141-385> .
+
+cre:780-757 a skos:Concept ;
+    skos:prefLabel "Model output contains conventional injection"@en ;
+    dcterms:identifier "780-757" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/780-757> .
+
+cre:686-110 a skos:Concept ;
+    skos:prefLabel "Direct prompt injection"@en ;
+    dcterms:identifier "686-110" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/686-110> .
+
+cre:012-625 a skos:Concept ;
+    skos:prefLabel "Indirect prompt injection"@en ;
+    dcterms:identifier "012-625" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/012-625> .
+
+cre:230-318 a skos:Concept ;
+    skos:prefLabel "AI resource exhaustion attack"@en ;
+    dcterms:identifier "230-318" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/230-318> .
+
+cre:370-877 a skos:Concept ;
+    skos:prefLabel "Evasion (e.g. adversarial examples)"@en ;
+    dcterms:identifier "370-877" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/370-877> .
+
+cre:220-870 a skos:Concept ;
+    skos:prefLabel "Training data confidentiality threats"@en ;
+    dcterms:identifier "220-870" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/220-870> .
+
+cre:475-586 a skos:Concept ;
+    skos:prefLabel "Training data confidentiality threats through inference"@en ;
+    dcterms:identifier "475-586" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/475-586> .
+
+cre:041-188 a skos:Concept ;
+    skos:prefLabel "Data quality control"@en ;
+    dcterms:identifier "041-188" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/041-188> .
+
+cre:088-316 a skos:Concept ;
+    skos:prefLabel "Augmentation data integrity controls"@en ;
+    dcterms:identifier "088-316" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/088-316> .
+
+cre:881-234 a skos:Concept ;
+    skos:prefLabel "AI supply chain management"@en ;
+    dcterms:identifier "881-234" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/881-234> .
+
+cre:761-417 a skos:Concept ;
+    skos:prefLabel "Evasion attack input handling"@en ;
+    dcterms:identifier "761-417" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/761-417> .
+
+cre:641-760 a skos:Concept ;
+    skos:prefLabel "AI Input distortion"@en ;
+    dcterms:identifier "641-760" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/641-760> .
+
+cre:342-641 a skos:Concept ;
+    skos:prefLabel "Anomalous AI input handling"@en ;
+    dcterms:identifier "342-641" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/342-641> .
+
+cre:576-262 a skos:Concept ;
+    skos:prefLabel "Unwanted AI input series handling"@en ;
+    dcterms:identifier "576-262" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/576-262> .
+
+cre:843-475 a skos:Concept ;
+    skos:prefLabel "Prompt injection I/O handling"@en ;
+    dcterms:identifier "843-475" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/843-475> .
+
+cre:536-158 a skos:Concept ;
+    skos:prefLabel "Testing against direct prompt injection"@en ;
+    dcterms:identifier "536-158" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/536-158> .
+
+cre:483-253 a skos:Concept ;
+    skos:prefLabel "Testing against indirect prompt injection"@en ;
+    dcterms:identifier "483-253" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/483-253> .
+
+cre:204-272 a skos:Concept ;
+    skos:prefLabel "Sensitive AI output handling"@en ;
+    dcterms:identifier "204-272" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/204-272> .
+
+cre:205-522 a skos:Concept ;
+    skos:prefLabel "Automated AI oversight"@en ;
+    dcterms:identifier "205-522" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/205-522> .
+
+cre:703-813 a skos:Concept ;
+    skos:prefLabel "Monitor inference"@en ;
+    dcterms:identifier "703-813" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/703-813> .
+
+cre:384-015 a skos:Concept ;
+    skos:prefLabel "Evasion-preventing training"@en ;
+    dcterms:identifier "384-015" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/384-015> .
+
+cre:146-871 a skos:Concept ;
+    skos:prefLabel "Ensemble AI models"@en ;
+    dcterms:identifier "146-871" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/146-871> .
+
+cre:364-516 a skos:Concept ;
+    skos:prefLabel "AI security assurance & validation"@en ;
+    dcterms:identifier "364-516" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/364-516> .
+
+cre:547-824 a skos:Concept ;
+    skos:prefLabel "AI model performance validation"@en ;
+    dcterms:identifier "547-824" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/547-824> .
+
+cre:555-083 a skos:Concept ;
+    skos:prefLabel "Testing against backdoor poisoning"@en ;
+    dcterms:identifier "555-083" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/555-083> .
+
+cre:011-322 a skos:Concept ;
+    skos:prefLabel "Testing against evasion"@en ;
+    dcterms:identifier "011-322" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/011-322> .
+
+cre:532-102 a skos:Concept ;
+    skos:prefLabel "Testing against model inversion"@en ;
+    dcterms:identifier "532-102" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/532-102> .
+
+cre:011-087 a skos:Concept ;
+    skos:prefLabel "Testing against membership inference"@en ;
+    dcterms:identifier "011-087" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/011-087> .
+
+cre:663-550 a skos:Concept ;
+    skos:prefLabel "Testing against model theft by inference"@en ;
+    dcterms:identifier "663-550" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/663-550> .
+
+cre:043-703 a skos:Concept ;
+    skos:prefLabel "Testing against sensitive data extraction by inference"@en ;
+    dcterms:identifier "043-703" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/043-703> .
+
+cre:715-644 a skos:Concept ;
+    skos:prefLabel "Access control to AI inference"@en ;
+    dcterms:identifier "715-644" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/715-644> .
+
+cre:220-442 a skos:Concept ;
+    skos:prefLabel "Model action privilege minimization"@en ;
+    dcterms:identifier "220-442" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/220-442> .
+
+cre:187-083 a skos:Concept ;
+    skos:prefLabel "Rate limiting against AI input attacks"@en ;
+    dcterms:identifier "187-083" ;
+    rdfs:seeAlso <https://www.opencre.org/cre/187-083> .
+
+cosai:riskDataPoisoning skos:relatedMatch cre:481-710 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskDataPoisoning ;
+    cosai:alignmentObject cre:481-710 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.T0020" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskDataPoisoning skos:relatedMatch cre:615-663 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskDataPoisoning ;
+    cosai:alignmentObject cre:615-663 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.T0020" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskDataPoisoning skos:relatedMatch cre:020-540 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskDataPoisoning ;
+    cosai:alignmentObject cre:020-540 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM04:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskDataPoisoning skos:relatedMatch cre:867-642 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskDataPoisoning ;
+    cosai:alignmentObject cre:867-642 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM04:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskModelSourceTampering skos:relatedMatch cre:701-654 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskModelSourceTampering ;
+    cosai:alignmentObject cre:701-654 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.T0010.003" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskExcessiveDataHandling skos:relatedMatch cre:044-202 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskExcessiveDataHandling ;
+    cosai:alignmentObject cre:044-202 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM02:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskExcessiveDataHandling skos:relatedMatch cre:034-540 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskExcessiveDataHandling ;
+    cosai:alignmentObject cre:034-540 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM02:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskExcessiveDataHandling skos:relatedMatch cre:077-772 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskExcessiveDataHandling ;
+    cosai:alignmentObject cre:077-772 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM02:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskExcessiveDataHandlingDuringInference skos:relatedMatch cre:044-202 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskExcessiveDataHandlingDuringInference ;
+    cosai:alignmentObject cre:044-202 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM02:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskExcessiveDataHandlingDuringInference skos:relatedMatch cre:034-540 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskExcessiveDataHandlingDuringInference ;
+    cosai:alignmentObject cre:034-540 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM02:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskExcessiveDataHandlingDuringInference skos:relatedMatch cre:077-772 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskExcessiveDataHandlingDuringInference ;
+    cosai:alignmentObject cre:077-772 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM02:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskModelExfiltration skos:relatedMatch cre:267-786 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskModelExfiltration ;
+    cosai:alignmentObject cre:267-786 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.T0024.002" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskModelExfiltration skos:relatedMatch cre:141-385 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskModelExfiltration ;
+    cosai:alignmentObject cre:141-385 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.T0024.002" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskModelDeploymentTampering skos:relatedMatch cre:701-654 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskModelDeploymentTampering ;
+    cosai:alignmentObject cre:701-654 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.T0010.003" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskModelDeploymentTampering skos:relatedMatch cre:780-757 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskModelDeploymentTampering ;
+    cosai:alignmentObject cre:780-757 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.T0051" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskModelDeploymentTampering skos:relatedMatch cre:686-110 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskModelDeploymentTampering ;
+    cosai:alignmentObject cre:686-110 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM01:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskModelDeploymentTampering skos:relatedMatch cre:012-625 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskModelDeploymentTampering ;
+    cosai:alignmentObject cre:012-625 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM01:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskDenialOfMLService skos:relatedMatch cre:230-318 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskDenialOfMLService ;
+    cosai:alignmentObject cre:230-318 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.T0029" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskModelReverseEngineering skos:relatedMatch cre:267-786 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskModelReverseEngineering ;
+    cosai:alignmentObject cre:267-786 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.T0024.002" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskModelReverseEngineering skos:relatedMatch cre:141-385 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskModelReverseEngineering ;
+    cosai:alignmentObject cre:141-385 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.T0024.002" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskInsecureIntegratedComponent skos:relatedMatch cre:780-757 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskInsecureIntegratedComponent ;
+    cosai:alignmentObject cre:780-757 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.T0051" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskInsecureIntegratedComponent skos:relatedMatch cre:701-654 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskInsecureIntegratedComponent ;
+    cosai:alignmentObject cre:701-654 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM03:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskPromptInjection skos:relatedMatch cre:780-757 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskPromptInjection ;
+    cosai:alignmentObject cre:780-757 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.T0051" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskPromptInjection skos:relatedMatch cre:686-110 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskPromptInjection ;
+    cosai:alignmentObject cre:686-110 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM01:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskPromptInjection skos:relatedMatch cre:012-625 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskPromptInjection ;
+    cosai:alignmentObject cre:012-625 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM01:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskModelEvasion skos:relatedMatch cre:370-877 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskModelEvasion ;
+    cosai:alignmentObject cre:370-877 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.T0015" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskModelEvasion skos:relatedMatch cre:686-110 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskModelEvasion ;
+    cosai:alignmentObject cre:686-110 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM01:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskModelEvasion skos:relatedMatch cre:012-625 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskModelEvasion ;
+    cosai:alignmentObject cre:012-625 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM01:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskSensitiveDataDisclosure skos:relatedMatch cre:220-870 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskSensitiveDataDisclosure ;
+    cosai:alignmentObject cre:220-870 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.T0024" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskSensitiveDataDisclosure skos:relatedMatch cre:475-586 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskSensitiveDataDisclosure ;
+    cosai:alignmentObject cre:475-586 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.T0024" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskSensitiveDataDisclosure skos:relatedMatch cre:044-202 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskSensitiveDataDisclosure ;
+    cosai:alignmentObject cre:044-202 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM02:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskSensitiveDataDisclosure skos:relatedMatch cre:034-540 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskSensitiveDataDisclosure ;
+    cosai:alignmentObject cre:034-540 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM02:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskSensitiveDataDisclosure skos:relatedMatch cre:077-772 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskSensitiveDataDisclosure ;
+    cosai:alignmentObject cre:077-772 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM02:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskInferredSensitiveData skos:relatedMatch cre:044-202 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskInferredSensitiveData ;
+    cosai:alignmentObject cre:044-202 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM02:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskInferredSensitiveData skos:relatedMatch cre:034-540 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskInferredSensitiveData ;
+    cosai:alignmentObject cre:034-540 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM02:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskInferredSensitiveData skos:relatedMatch cre:077-772 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskInferredSensitiveData ;
+    cosai:alignmentObject cre:077-772 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM02:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskInsecureModelOutput skos:relatedMatch cre:044-202 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskInsecureModelOutput ;
+    cosai:alignmentObject cre:044-202 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM05:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskInsecureModelOutput skos:relatedMatch cre:780-757 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskInsecureModelOutput ;
+    cosai:alignmentObject cre:780-757 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM05:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskRogueActions skos:relatedMatch cre:780-757 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskRogueActions ;
+    cosai:alignmentObject cre:780-757 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.T0051" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskToolSourceProvenance skos:relatedMatch cre:701-654 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskToolSourceProvenance ;
+    cosai:alignmentObject cre:701-654 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM03:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskRunawayAgentToolLoops skos:relatedMatch cre:230-318 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskRunawayAgentToolLoops ;
+    cosai:alignmentObject cre:230-318 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM10:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:riskZombieShadowMCPServers skos:relatedMatch cre:701-654 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:riskZombieShadowMCPServers ;
+    cosai:alignmentObject cre:701-654 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM03:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlTrainingDataSanitization skos:relatedMatch cre:041-188 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlTrainingDataSanitization ;
+    cosai:alignmentObject cre:041-188 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.M0007" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlTrainingDataSanitization skos:relatedMatch cre:088-316 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlTrainingDataSanitization ;
+    cosai:alignmentObject cre:088-316 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.M0007" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlModelAndDataIntegrityManagement skos:relatedMatch cre:881-234 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlModelAndDataIntegrityManagement ;
+    cosai:alignmentObject cre:881-234 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.M0014" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlInputValidationAndSanitization skos:relatedMatch cre:761-417 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlInputValidationAndSanitization ;
+    cosai:alignmentObject cre:761-417 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.M0010" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlInputValidationAndSanitization skos:relatedMatch cre:641-760 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlInputValidationAndSanitization ;
+    cosai:alignmentObject cre:641-760 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.M0010" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlInputValidationAndSanitization skos:relatedMatch cre:342-641 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlInputValidationAndSanitization ;
+    cosai:alignmentObject cre:342-641 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.M0015" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlInputValidationAndSanitization skos:relatedMatch cre:576-262 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlInputValidationAndSanitization ;
+    cosai:alignmentObject cre:576-262 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.M0015" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlInputValidationAndSanitization skos:relatedMatch cre:843-475 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlInputValidationAndSanitization ;
+    cosai:alignmentObject cre:843-475 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.M0015" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlInputValidationAndSanitization skos:relatedMatch cre:536-158 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlInputValidationAndSanitization ;
+    cosai:alignmentObject cre:536-158 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.M0015" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlInputValidationAndSanitization skos:relatedMatch cre:483-253 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlInputValidationAndSanitization ;
+    cosai:alignmentObject cre:483-253 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.M0015" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlInputValidationAndSanitization skos:relatedMatch cre:204-272 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlInputValidationAndSanitization ;
+    cosai:alignmentObject cre:204-272 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.M0020" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlInputValidationAndSanitization skos:relatedMatch cre:205-522 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlInputValidationAndSanitization ;
+    cosai:alignmentObject cre:205-522 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.M0020" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlInputValidationAndSanitization skos:relatedMatch cre:703-813 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlInputValidationAndSanitization ;
+    cosai:alignmentObject cre:703-813 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.M0024" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlInputValidationAndSanitization skos:relatedMatch cre:686-110 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlInputValidationAndSanitization ;
+    cosai:alignmentObject cre:686-110 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM01:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlInputValidationAndSanitization skos:relatedMatch cre:012-625 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlInputValidationAndSanitization ;
+    cosai:alignmentObject cre:012-625 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM01:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlOutputValidationAndSanitization skos:relatedMatch cre:204-272 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlOutputValidationAndSanitization ;
+    cosai:alignmentObject cre:204-272 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.M0020" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlOutputValidationAndSanitization skos:relatedMatch cre:205-522 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlOutputValidationAndSanitization ;
+    cosai:alignmentObject cre:205-522 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.M0020" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlOutputValidationAndSanitization skos:relatedMatch cre:703-813 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlOutputValidationAndSanitization ;
+    cosai:alignmentObject cre:703-813 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.M0024" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlOutputValidationAndSanitization skos:relatedMatch cre:044-202 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlOutputValidationAndSanitization ;
+    cosai:alignmentObject cre:044-202 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM02:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlOutputValidationAndSanitization skos:relatedMatch cre:034-540 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlOutputValidationAndSanitization ;
+    cosai:alignmentObject cre:034-540 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM02:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlOutputValidationAndSanitization skos:relatedMatch cre:077-772 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlOutputValidationAndSanitization ;
+    cosai:alignmentObject cre:077-772 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM02:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlOutputValidationAndSanitization skos:relatedMatch cre:780-757 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlOutputValidationAndSanitization ;
+    cosai:alignmentObject cre:780-757 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM05:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlAdversarialTrainingAndTesting skos:relatedMatch cre:384-015 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlAdversarialTrainingAndTesting ;
+    cosai:alignmentObject cre:384-015 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.M0003" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlAdversarialTrainingAndTesting skos:relatedMatch cre:146-871 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlAdversarialTrainingAndTesting ;
+    cosai:alignmentObject cre:146-871 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.M0006" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlAdversarialTrainingAndTesting skos:relatedMatch cre:364-516 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlAdversarialTrainingAndTesting ;
+    cosai:alignmentObject cre:364-516 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.M0008" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlAdversarialTrainingAndTesting skos:relatedMatch cre:547-824 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlAdversarialTrainingAndTesting ;
+    cosai:alignmentObject cre:547-824 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.M0008" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlAdversarialTrainingAndTesting skos:relatedMatch cre:555-083 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlAdversarialTrainingAndTesting ;
+    cosai:alignmentObject cre:555-083 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.M0008" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlAdversarialTrainingAndTesting skos:relatedMatch cre:011-322 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlAdversarialTrainingAndTesting ;
+    cosai:alignmentObject cre:011-322 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.M0008" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlAdversarialTrainingAndTesting skos:relatedMatch cre:532-102 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlAdversarialTrainingAndTesting ;
+    cosai:alignmentObject cre:532-102 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.M0008" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlAdversarialTrainingAndTesting skos:relatedMatch cre:011-087 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlAdversarialTrainingAndTesting ;
+    cosai:alignmentObject cre:011-087 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.M0008" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlAdversarialTrainingAndTesting skos:relatedMatch cre:663-550 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlAdversarialTrainingAndTesting ;
+    cosai:alignmentObject cre:663-550 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.M0008" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlAdversarialTrainingAndTesting skos:relatedMatch cre:043-703 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlAdversarialTrainingAndTesting ;
+    cosai:alignmentObject cre:043-703 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.M0008" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlApplicationAccessManagement skos:relatedMatch cre:715-644 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlApplicationAccessManagement ;
+    cosai:alignmentObject cre:715-644 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.M0019" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlApplicationAccessManagement skos:relatedMatch cre:230-318 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlApplicationAccessManagement ;
+    cosai:alignmentObject cre:230-318 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM10:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlAgentPluginPermissions skos:relatedMatch cre:220-442 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlAgentPluginPermissions ;
+    cosai:alignmentObject cre:220-442 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.M0028" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlInterComponentTransportSecurity skos:relatedMatch cre:701-654 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlInterComponentTransportSecurity ;
+    cosai:alignmentObject cre:701-654 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM03:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlAgentExecutionBounds skos:relatedMatch cre:187-083 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlAgentExecutionBounds ;
+    cosai:alignmentObject cre:187-083 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "mitre-atlas" ;
+    dcterms:source "AML.M0004" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+cosai:controlAgentExecutionBounds skos:relatedMatch cre:230-318 .
+[] a cosai:AlignmentAssertion ;
+    cosai:alignmentSubject cosai:controlAgentExecutionBounds ;
+    cosai:alignmentObject cre:230-318 ;
+    cosai:alignmentMethod "transitive-join" ;
+    cosai:alignmentVia "owasp-top10-llm" ;
+    dcterms:source "LLM10:2025" ;
+    rdfs:comment "Join of a CoSAI native mapping onto an OpenCRE published link for the same ATLAS or OWASP LLM identifier. Not a community-reviewed exact match."@en .
+
+# CRE concepts declared: 43
+# Alignment pairs: 80

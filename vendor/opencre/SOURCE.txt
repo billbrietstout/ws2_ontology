@@ -1,0 +1,4 @@
+OpenCRE REST snapshots used to join ATLAS and OWASP Top 10 for LLM
+section IDs onto CRE nodes. Retrieved from https://www.opencre.org/rest/v1/standard/
+Files: atlas-p1.json, atlas-p2.json, atlas-p3.json, owasp-llm.json
+CRE pages: https://www.opencre.org/cre/{id}

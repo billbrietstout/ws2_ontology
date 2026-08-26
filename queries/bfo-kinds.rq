@@ -1,0 +1,11 @@
+PREFIX cosai: <https://cosai-oasis.github.io/ontology/cosai-rm#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+
+SELECT ?entry ?label ?bfo ?bfoLabel
+WHERE {
+  ?entry cosai:describesBfoClass ?bfo ;
+         rdfs:label ?label .
+  OPTIONAL { ?bfo rdfs:label ?bfoLabel }
+}
+ORDER BY ?bfoLabel ?label

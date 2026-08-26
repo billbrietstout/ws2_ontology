@@ -1,0 +1,101 @@
+@prefix cosai: <https://cosai-oasis.github.io/ontology/cosai-rm#> .
+@prefix d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<https://cosai-oasis.github.io/ontology/cosai-rm/alignments/d3fend> a owl:Ontology ;
+    owl:imports <https://cosai-oasis.github.io/ontology/cosai-rm/catalog> ;
+    dcterms:title "CoSAI-RM to MITRE D3FEND 1.5.0 alignment"@en ;
+    owl:versionInfo "D3FEND 1.5.0" ;
+    dcterms:source <http://d3fend.mitre.org/ontologies/d3fend/1.5.0/d3fend.owl> ;
+    rdfs:comment "SKOS matches from CoSAI-RM catalog individuals to D3FEND defensive techniques and digital artifacts. D3FEND puns technique classes as named individuals, so matches target those IRIs. This file does not owl:imports d3fend.owl. ATT&CK technique links are inherited only if a consumer also loads D3FEND."@en .
+
+#################################################################
+# MIREOT: D3FEND classes used as match targets
+#################################################################
+
+d3f:DefensiveTechnique a owl:Class ;
+    rdfs:label "defensive technique"@en .
+
+d3f:DigitalArtifact a owl:Class ;
+    rdfs:label "digital artifact"@en .
+
+d3f:OffensiveTechnique a owl:Class ;
+    rdfs:label "offensive technique"@en .
+
+d3f:File a owl:Class ;
+    rdfs:label "file"@en ;
+    rdfs:subClassOf d3f:DigitalArtifact .
+
+d3f:Software a owl:Class ;
+    rdfs:label "software"@en ;
+    rdfs:subClassOf d3f:DigitalArtifact .
+
+d3f:Application a owl:Class ;
+    rdfs:label "application"@en ;
+    rdfs:subClassOf d3f:DigitalArtifact .
+
+d3f:Credential a owl:Class ;
+    rdfs:label "credential"@en ;
+    rdfs:subClassOf d3f:DigitalArtifact .
+
+d3f:Process a owl:Class ;
+    rdfs:label "process"@en ;
+    rdfs:subClassOf d3f:DigitalArtifact .
+
+d3f:NetworkTraffic a owl:Class ;
+    rdfs:label "network traffic"@en ;
+    rdfs:subClassOf d3f:DigitalArtifact .
+
+#################################################################
+# Controls -> DefensiveTechnique (D3FEND 1.5.0 IDs)
+#################################################################
+
+cosai:controlModelAndDataInventoryManagement skos:closeMatch d3f:AssetInventory, d3f:DataInventory, d3f:SoftwareInventory .
+cosai:controlAgentInventoryManagement skos:relatedMatch d3f:AssetInventory, d3f:ConfigurationInventory .
+cosai:controlModelAndDataAccessControls skos:closeMatch d3f:AccessMediation, d3f:LocalFilePermissions, d3f:UserAccountPermissions .
+cosai:controlApplicationAccessManagement skos:closeMatch d3f:AccessMediation, d3f:UserAccountPermissions ;
+    skos:relatedMatch d3f:InboundSessionVolumeAnalysis .
+cosai:controlModelAndDataIntegrityManagement skos:closeMatch d3f:FileIntegrityMonitoring, d3f:FileHashing .
+cosai:controlModelAndDataExecutionIntegrity skos:closeMatch d3f:FileHashing ;
+    skos:relatedMatch d3f:TPMBootIntegrity, d3f:DriverLoadIntegrityChecking .
+cosai:controlIsolatedConfidentialComputing skos:closeMatch d3f:ExecutionIsolation, d3f:NetworkIsolation .
+cosai:controlInterComponentTransportSecurity skos:closeMatch d3f:EncryptedTunnels, d3f:MessageAuthentication, d3f:MessageEncryption .
+cosai:controlComponentIdentityProvenance skos:relatedMatch d3f:AgentAuthentication, d3f:CertificatePinning, d3f:CertificateAnalysis .
+cosai:controlAgentCredentialIsolation skos:closeMatch d3f:CredentialHardening, d3f:CredentialTransmissionScoping, d3f:CredentialRotation .
+cosai:controlAgentIntegrityManagement skos:relatedMatch d3f:AgentAuthentication, d3f:FileIntegrityMonitoring .
+cosai:controlSecureByDefaultMLTooling skos:relatedMatch d3f:ApplicationHardening, d3f:ApplicationConfigurationHardening, d3f:ExecutableDenylisting, d3f:PlatformHardening .
+cosai:controlInputValidationAndSanitization skos:closeMatch d3f:ContentValidation, d3f:ContentFiltering .
+cosai:controlOutputValidationAndSanitization skos:closeMatch d3f:ContentValidation, d3f:ContentFiltering .
+cosai:controlThreatDetection skos:relatedMatch d3f:NetworkTrafficAnalysis, d3f:ProcessSpawnAnalysis, d3f:OperationalProcessMonitoring .
+cosai:controlAgentObservability skos:relatedMatch d3f:OperationalProcessMonitoring, d3f:ApplicationExceptionMonitoring, d3f:WebSessionActivityAnalysis .
+cosai:controlIncidentResponseManagement skos:relatedMatch d3f:CredentialEviction, d3f:CredentialRevocation, d3f:RestoreAccess .
+cosai:controlVulnerabilityManagement skos:relatedMatch d3f:SoftwareUpdate, d3f:SoftwareInventory .
+cosai:controlTrainingDataSanitization skos:relatedMatch d3f:ContentValidation, d3f:DataInventory .
+cosai:controlRetrievalAndVectorSystemIntegrity skos:relatedMatch d3f:FileIntegrityMonitoring, d3f:FileHashing .
+cosai:controlOrchestratorAndRouteIntegrity skos:relatedMatch d3f:RoutingAccessMediation, d3f:NetworkTrafficPolicyMapping .
+cosai:controlAgentPluginPermissions skos:relatedMatch d3f:UserAccountPermissions, d3f:SystemConfigurationPermissions .
+cosai:controlAgentExecutionBounds skos:relatedMatch d3f:InboundSessionVolumeAnalysis .
+cosai:controlAgentPluginUserControl skos:relatedMatch d3f:AccessMediation .
+
+#################################################################
+# Components -> DigitalArtifact
+#################################################################
+
+cosai:componentTheModel skos:relatedMatch d3f:File, d3f:Software .
+cosai:componentModelFrameworksAndCode skos:relatedMatch d3f:Software .
+cosai:componentTrainingData skos:relatedMatch d3f:File .
+cosai:componentDataSources skos:relatedMatch d3f:File .
+cosai:componentRAGContent skos:relatedMatch d3f:File .
+cosai:componentMemory skos:relatedMatch d3f:File .
+cosai:componentDataStorage skos:relatedMatch d3f:File .
+cosai:componentModelStorage skos:relatedMatch d3f:File .
+cosai:componentApplication skos:relatedMatch d3f:Application .
+cosai:componentTools skos:relatedMatch d3f:Software .
+cosai:componentModelServing skos:relatedMatch d3f:Software .
+cosai:componentReasoningCore skos:relatedMatch d3f:Process .
+cosai:componentAgentSystemInstruction skos:relatedMatch d3f:File .
+cosai:componentAgentUserQuery skos:relatedMatch d3f:NetworkTraffic .

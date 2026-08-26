@@ -1,0 +1,420 @@
+{
+  "schema_version": "0.1",
+  "srf_version": "1.0",
+  "framework": "JPF",
+  "version": "0.1",
+  "id_convention": "JPF-{layer}-{seq}",
+  "description": "Prevention, detection, and containment controls for jailbreaks in deployed AI systems. Each control names one accountable persona, the obligation that persona performs, the attestation that proves it, and a measurable threshold. CJS is an imported input at L5 and L1; ENV is authored at L3.",
+  "controls": [
+    {
+      "id": "JPF-L1-001",
+      "layer": "L1",
+      "component": "Processes & Governance",
+      "title": "Named authorization for high-risk dual use",
+      "description": "AI System Governance publishes which users, under which attested grant, may ask the system to do high-risk dual-use work (penetration tests, exploit development, lateral-movement emulation). Requests without that grant are treated as unauthorized even when the model would answer. The Fable 5 safeguards post separates those activities from harm by who is doing the work; this control is that assignment.",
+      "accountable_persona": "ai-system-governance",
+      "operating_models": ["AI-SaaS", "AI-PaaS", "Agent-PaaS", "IaaS"],
+      "obligation": "Maintain a roster of authorized principals and the expiry of each grant. Hand the roster to L3 so tool allowlists and to L4 so serving policy can enforce it.",
+      "attestation": "Signed grant file: principal, scope, expiry, approving executive, date. Revocation list with timestamps.",
+      "threshold": {
+        "metric": "unauthorized_high_risk_dual_use_completions",
+        "description": "Count of completions in 7 days that match the high-risk dual-use list and lack a live grant for that principal.",
+        "operator": "==",
+        "param": "0",
+        "param_type": "zero-tolerance",
+        "window": "7-days",
+        "breach_action": "kill-session-and-revoke-tool-bindings"
+      }
+    },
+    {
+      "id": "JPF-L1-002",
+      "layer": "L1",
+      "component": "Processes & Governance",
+      "title": "CJS intake without rescoring",
+      "description": "When a Model Provider or researcher publishes a CJS band, AI System Governance records that band as the floor for operator response. Governance may raise the operational class via ENV. It may not lower CJS, recompute gain/breadth/ease/discoverability, or substitute a local severity label.",
+      "accountable_persona": "ai-system-governance",
+      "operating_models": ["AI-SaaS", "AI-PaaS", "Agent-PaaS", "IaaS"],
+      "obligation": "File every inbound CJS finding against the affected system-id within 1 business day. Compute O from published CJS plus the system's current ENV (JPF-L3-006).",
+      "attestation": "IR ticket with CJS band, source URL or VDP id, ENV band, resulting O class, and the name of the person who recorded it.",
+      "threshold": {
+        "metric": "cjs_findings_filed_within_1_business_day",
+        "description": "Fraction of inbound CJS reports in 30 days that have a ticket with CJS, ENV, and O populated.",
+        "operator": ">=",
+        "param": "0.95",
+        "window": "30-days",
+        "breach_action": "escalate-to-named-l1-executive"
+      }
+    },
+    {
+      "id": "JPF-L1-003",
+      "layer": "L1",
+      "component": "Capabilities & Business Strategy",
+      "title": "Accepted safety-margin false-positive rate",
+      "description": "Classifiers that block some benign coding and low-risk dual-use requests are a published Fable 5 trade. L1 names the false-positive rate it will accept for this system, and names who absorbs user impact when the rate is exceeded.",
+      "accountable_persona": "ai-system-governance",
+      "operating_models": ["AI-SaaS", "AI-PaaS", "Agent-PaaS", "IaaS"],
+      "obligation": "Write the accepted rate into the risk statement. Review the Model Provider's monthly false-positive figure against that rate.",
+      "attestation": "Risk statement paragraph with numeric rate, review date, and the executive who accepted it.",
+      "threshold": {
+        "metric": "safety_margin_false_positive_rate",
+        "description": "Provider-reported fraction of blocked coding/debug requests later judged benign. Compared to the rate in the risk statement; the schema does not invent a universal number.",
+        "operator": "<=",
+        "param": "accepted_rate_in_risk_statement",
+        "window": "monthly",
+        "breach_action": "renegotiate-classifier-threshold-or-change-model"
+      }
+    },
+    {
+      "id": "JPF-L1-004",
+      "layer": "L1",
+      "component": "Business Units & Accountability",
+      "title": "Jailbreak incident commander",
+      "description": "The AI Incident Response Framework already lists jailbreaking as an operator incident type. This control names the commander for O-2 and above, and the deputy when that person is unavailable. Prompt injection stays a separate incident type.",
+      "accountable_persona": "ai-system-governance",
+      "operating_models": ["AI-SaaS", "AI-PaaS", "Agent-PaaS", "IaaS"],
+      "obligation": "Keep a 24/7 roster for O-3 and O-4. Keep a business-hours roster for O-2. The commander owns containment decisions in scoring.json operational_class.",
+      "attestation": "On-call calendar with named humans, backup, and the O class each shift covers.",
+      "threshold": {
+        "metric": "o2_plus_pages_with_named_commander",
+        "description": "Fraction of O-2+ pages in 30 days that a named commander acknowledged within the SLA in scoring.json.",
+        "operator": ">=",
+        "param": "0.95",
+        "window": "30-days",
+        "breach_action": "page-deputy-and-review-roster"
+      }
+    },
+    {
+      "id": "JPF-L2-001",
+      "layer": "L2",
+      "component": "Master Data Management",
+      "title": "Instruction-class versus data-class labeling",
+      "description": "Retrieved documents, tool output, and memory records carry a label: instruction or data. Data-class content is not concatenated into the instruction stream of a downstream model. A jailbreak of model A that is implemented as prompt injection into model B fails this control if B receives A's text unlabeled.",
+      "accountable_persona": "data-provider",
+      "operating_models": ["AI-SaaS", "AI-PaaS", "Agent-PaaS", "IaaS"],
+      "obligation": "Tag every retrieved chunk and tool observation at write time. Refuse to serve an unlabeled chunk into a prompt.",
+      "attestation": "Schema field content_class in {instruction, data} on 100% of RAG chunks and tool observations written in the window.",
+      "threshold": {
+        "metric": "unlabeled_chunks_served_to_prompt",
+        "description": "Count of prompt assemblies in 7 days that included a retrieved or tool-sourced span with content_class missing.",
+        "operator": "==",
+        "param": "0",
+        "param_type": "zero-tolerance",
+        "window": "7-days",
+        "breach_action": "halt-retrieval-until-backfill"
+      }
+    },
+    {
+      "id": "JPF-L2-002",
+      "layer": "L2",
+      "component": "Privacy Controls & Policies",
+      "title": "Mediated memory writes",
+      "description": "Untrusted user text and tool output cannot become a standing instruction, skill, or scheduled job without a named L3 review. Persistence is an ENV axis; this control is the gate that keeps ENV from jumping to 2 without an owner.",
+      "accountable_persona": "data-provider",
+      "operating_models": ["AI-PaaS", "Agent-PaaS", "IaaS"],
+      "obligation": "Queue memory writes that would change future instruction streams. A named Application Developer accepts or rejects each write.",
+      "attestation": "Memory-write log: source span, proposed instruction, reviewer, decision, timestamp.",
+      "threshold": {
+        "metric": "unreviewed_instruction_class_memory_writes",
+        "description": "Count of instruction-class memory writes in 7 days with no reviewer decision.",
+        "operator": "==",
+        "param": "0",
+        "param_type": "zero-tolerance",
+        "window": "7-days",
+        "breach_action": "freeze-memory-writes"
+      }
+    },
+    {
+      "id": "JPF-L2-003",
+      "layer": "L2",
+      "component": "AI Training Data",
+      "title": "Jailbreak-recipe data restricted",
+      "description": "Evaluation sets and fine-tune corpora that contain working jailbreak recipes are classified restricted. They are not copied into logs, tickets, or customer-visible traces. Discoverability is a CJS axis; leaking the recipe inside the operator's own telemetry raises it.",
+      "accountable_persona": "data-provider",
+      "operating_models": ["AI-PaaS", "Agent-PaaS", "IaaS"],
+      "obligation": "Store recipes in a restricted corpus with access logging. Redact recipe strings from IR tickets after the CJS band is recorded.",
+      "attestation": "Access log for the restricted corpus; ticket samples showing recipe redaction.",
+      "threshold": {
+        "metric": "recipe_strings_in_customer_visible_logs",
+        "description": "Count of production log lines in 7 days that match known recipe identifiers from the restricted corpus.",
+        "operator": "==",
+        "param": "0",
+        "param_type": "zero-tolerance",
+        "window": "7-days",
+        "breach_action": "rotate-corpus-access-and-purge-logs"
+      }
+    },
+    {
+      "id": "JPF-L3-001",
+      "layer": "L3",
+      "component": "APIs & Fine-tuned Models",
+      "title": "Tool calls bound to the original user token",
+      "description": "Every tool invocation presents the original user's token (or a downscoped derivative of it), not a shared agent service account, unless L1 has accepted ENV tool_authority >= 2 in writing. Confused-deputy tool fire is a system jailbreak even when the user-facing model refused.",
+      "accountable_persona": "application-developer",
+      "operating_models": ["AI-SaaS", "AI-PaaS", "Agent-PaaS", "IaaS"],
+      "obligation": "Pass user_id and a scoped token into each tool adapter. Reject calls that present only the agent identity when the risk statement requires user-bound tools.",
+      "attestation": "For a sample of 100 production tool calls, the authorization material matches the session's original principal.",
+      "threshold": {
+        "metric": "tool_calls_missing_original_principal",
+        "description": "Fraction of production tool calls in 7 days whose authn/authz material does not include the session's original user_id.",
+        "operator": "<=",
+        "param": "0.01",
+        "window": "7-days",
+        "breach_action": "disable-service-account-tool-path"
+      }
+    },
+    {
+      "id": "JPF-L3-002",
+      "layer": "L3",
+      "component": "Agents & Orchestration Models",
+      "title": "Peer models treated as untrusted speakers",
+      "description": "A completion from model A is untrusted input to model B. B's system prompt and tool policy do not treat A as a principal. Delegation is a policy downgrade unless L1 has accepted graph_depth >= 1 and named the hop.",
+      "accountable_persona": "agentic-platform-provider",
+      "operating_models": ["Agent-PaaS", "IaaS"],
+      "obligation": "Wrap every inter-model message as data-class content (JPF-L2-001) and run B's jailbreak and prompt-injection detectors on it before B's tools may fire.",
+      "attestation": "Hop trace showing detector results on A→B messages for every production multi-model session in the sample.",
+      "threshold": {
+        "metric": "inter_model_messages_without_detector_pass",
+        "description": "Count of A→B messages in 7 days that reached B's tool adapter with no detector result recorded.",
+        "operator": "==",
+        "param": "0",
+        "param_type": "zero-tolerance",
+        "window": "7-days",
+        "breach_action": "break-the-hop-until-detectors-are-inline"
+      }
+    },
+    {
+      "id": "JPF-L3-003",
+      "layer": "L3",
+      "component": "APIs & Fine-tuned Models",
+      "title": "Output filter before tool fire",
+      "description": "The model's completion is not a sufficient authorization to run a tool. An output filter, independent of the model's self-reported refusal, runs before the adapter. A classifier miss at L5 still dies at L3 if the filter catches the side effect.",
+      "accountable_persona": "application-developer",
+      "operating_models": ["AI-SaaS", "AI-PaaS", "Agent-PaaS", "IaaS"],
+      "obligation": "Evaluate each candidate tool call against the allowlist and the dual-use grant (JPF-L1-001) before invocation.",
+      "attestation": "Adapter log: proposed call, filter decision, grant-id or deny reason, timestamp.",
+      "threshold": {
+        "metric": "tool_fires_without_filter_decision",
+        "description": "Count of tool invocations in 7 days with no filter decision record.",
+        "operator": "==",
+        "param": "0",
+        "param_type": "zero-tolerance",
+        "window": "7-days",
+        "breach_action": "disable-unfiltered-adapters"
+      }
+    },
+    {
+      "id": "JPF-L3-004",
+      "layer": "L3",
+      "component": "Agents & Orchestration Models",
+      "title": "Split-payload and stitch detection",
+      "description": "CJS ease=1 describes splitting a harmful request into benign sub-prompts and stitching the outputs. The Application Developer logs turn-level intents and flags mechanical concatenation of previously blocked spans. The detector fires on the stitch, not on any one turn looking like a jailbreak string.",
+      "accountable_persona": "application-developer",
+      "operating_models": ["AI-PaaS", "Agent-PaaS", "IaaS"],
+      "obligation": "Retain per-turn blocked spans for the session. Block a later tool call whose arguments reconstruct a blocked span above a documented similarity threshold.",
+      "attestation": "Session traces with blocked-span store and stitch-block events.",
+      "threshold": {
+        "metric": "stitch_blocks_tested_quarterly",
+        "description": "Binary: a quarterly test reconstructs a known blocked span across three turns and the adapter refuses the tool call.",
+        "operator": "==",
+        "param": "true",
+        "param_type": "verification",
+        "window": "quarterly",
+        "breach_action": "fail-release-gate"
+      }
+    },
+    {
+      "id": "JPF-L3-005",
+      "layer": "L3",
+      "component": "Application Platforms",
+      "title": "Prompt-injection detector distinct from jailbreak classifier",
+      "description": "Charter names prompt injection as in-scope. CJS footnote 2 treats jailbreak and bypass as synonyms for model-safeguard failure. One detector cannot discharge both obligations. A trip of either is recorded under its own IR type.",
+      "accountable_persona": "application-developer",
+      "operating_models": ["AI-SaaS", "AI-PaaS", "Agent-PaaS", "IaaS"],
+      "obligation": "Ship two named detectors with separate configs, logs, and IR types. A jailbreak-classifier trip does not close a prompt-injection ticket, and the reverse.",
+      "attestation": "Config showing two detector ids; 30-day log with both event types present or an explicit 'none observed' signed note.",
+      "threshold": {
+        "metric": "distinct_detector_ids_in_production",
+        "description": "Binary: production config contains two detector ids, and IR taxonomy has both incident types.",
+        "operator": "==",
+        "param": "true",
+        "param_type": "verification",
+        "window": "at-release",
+        "breach_action": "block-release"
+      }
+    },
+    {
+      "id": "JPF-L3-006",
+      "layer": "L3",
+      "component": "Agents & Orchestration Models",
+      "title": "Published ENV band per system",
+      "description": "The Application Developer scores tool_authority, graph_depth, persistence, authorization_fidelity, and hitl_window for each production system-id, using data/scoring.json. The band is reviewed when tools, hops, or memory writes change.",
+      "accountable_persona": "application-developer",
+      "operating_models": ["AI-SaaS", "AI-PaaS", "Agent-PaaS", "IaaS"],
+      "obligation": "Publish ENV for every production system-id. Recompute within 5 business days of a tool-binding, hop, or memory-policy change.",
+      "attestation": "ENV record: system-id, five axis scores, band, scorer, date, triggering change.",
+      "threshold": {
+        "metric": "production_systems_with_current_env",
+        "description": "Fraction of production system-ids whose ENV record is dated after the last tool/hop/memory change, or is less than 90 days old if no change occurred.",
+        "operator": ">=",
+        "param": "0.95",
+        "window": "90-days",
+        "breach_action": "freeze-new-tool-bindings"
+      }
+    },
+    {
+      "id": "JPF-L4-001",
+      "layer": "L4",
+      "component": "Guardrails & Safety Systems",
+      "title": "Session kill and tool-class rate limit on detector trip",
+      "description": "When an L3 or L5 detector trips, the platform kills the session and rate-limits the implicated tool class for that tenant. Blast radius stays inside the tenant.",
+      "accountable_persona": "ai-platform-provider",
+      "operating_models": ["AI-SaaS", "AI-PaaS", "Agent-PaaS"],
+      "obligation": "Honor a session-kill API from L3 within 5 seconds. Apply a documented rate limit to the tool class for 24 hours or until a named commander lifts it.",
+      "attestation": "Kill-latency measurements from quarterly drill; rate-limit config keyed by tenant and tool class.",
+      "threshold": {
+        "metric": "session_kill_latency_p95_seconds",
+        "description": "p95 seconds from detector trip to session invalidated, measured in the quarterly drill.",
+        "operator": "<=",
+        "param": "5",
+        "window": "quarterly-drill",
+        "breach_action": "page-platform-on-call"
+      }
+    },
+    {
+      "id": "JPF-L4-002",
+      "layer": "L4",
+      "component": "LLM Routers & Gateways",
+      "title": "Fallback routing with user notice",
+      "description": "Fable 5 routes blocked requests to a weaker model and notifies the user. The platform implements that pattern for any model whose Model Provider documents a fallback. Silent drops and silent continues are both failures of this control.",
+      "accountable_persona": "ai-model-serving",
+      "operating_models": ["AI-SaaS", "AI-PaaS", "Agent-PaaS"],
+      "obligation": "On classifier block, route to the named fallback model or return a block notice. Never execute the original model's blocked completion against a tool.",
+      "attestation": "Gateway traces: block event, user-visible notice id, fallback model id or explicit no-fallback.",
+      "threshold": {
+        "metric": "blocked_completions_that_still_hit_tools",
+        "description": "Count of classifier-block events in 7 days followed by a tool invocation from that completion.",
+        "operator": "==",
+        "param": "0",
+        "param_type": "zero-tolerance",
+        "window": "7-days",
+        "breach_action": "disable-tool-path-on-that-gateway"
+      }
+    },
+    {
+      "id": "JPF-L4-003",
+      "layer": "L4",
+      "component": "Compute Infrastructure",
+      "title": "Path attestation on every tool call",
+      "description": "A tool call record carries user_id, session_id, model_id, hop_id, tool_name, and outcome. Without that path, JPF-L1-004 cannot assign the failed obligation. Shared agent identities fail this control.",
+      "accountable_persona": "ai-platform-provider",
+      "operating_models": ["AI-SaaS", "AI-PaaS", "Agent-PaaS", "IaaS"],
+      "obligation": "Emit the six fields on every production tool call. Reject tool adapter start if any field is missing.",
+      "attestation": "Seven-day completeness report: count of tool calls, count missing any of the six fields.",
+      "threshold": {
+        "metric": "tool_calls_with_complete_path_attestation",
+        "description": "Fraction of production tool calls in 7 days that include user_id, session_id, model_id, hop_id, tool_name, and outcome.",
+        "operator": ">=",
+        "param": "0.95",
+        "window": "7-days",
+        "breach_action": "halt-new-tool-bindings-until-fields-present"
+      }
+    },
+    {
+      "id": "JPF-L4-004",
+      "layer": "L4",
+      "component": "Guardrails & Safety Systems",
+      "title": "Tenant isolation of memory and skills",
+      "description": "A jailbreak session in tenant A cannot write memory, skills, or standing instructions visible to tenant B. Cross-tenant plant is ENV persistence=2 plus an isolation failure.",
+      "accountable_persona": "ai-platform-provider",
+      "operating_models": ["AI-SaaS", "AI-PaaS", "Agent-PaaS"],
+      "obligation": "Partition memory and skill stores by tenant_id at the storage layer. Quarterly test: write in A, read from B, expect empty.",
+      "attestation": "Isolation test report with tenant pair, write, read, result.",
+      "threshold": {
+        "metric": "cross_tenant_memory_reads_in_isolation_test",
+        "description": "Count of successful reads of tenant A's instruction-class memory from tenant B in the quarterly test.",
+        "operator": "==",
+        "param": "0",
+        "param_type": "zero-tolerance",
+        "window": "quarterly",
+        "breach_action": "take-shared-memory-offline"
+      }
+    },
+    {
+      "id": "JPF-L5-001",
+      "layer": "L5",
+      "component": "Foundation Models",
+      "title": "Defense-in-depth safeguards on the served model",
+      "description": "The Model Provider ships refusal training, runtime classifiers, and offline monitoring together. Fable 5 states that each layer alone is imperfect and the combination is the defense. Operators verify the three exist; they do not retrain them. If cyber classifiers are off for an evaluation, CJS does not apply; the Model Provider must say so in the same note, and L1 must have a residual-risk statement that names third-party production systems the eval can reach.",
+      "accountable_persona": "model-provider",
+      "operating_models": ["AI-SaaS", "AI-PaaS", "Agent-PaaS", "IaaS"],
+      "obligation": "Document the three mechanisms for this model version. State which dual-use categories are blocked, monitored, or allowed, at the granularity of the Fable 5 four-category table. If classifiers are off, record that fact and the dated residual-risk statement id from L1.",
+      "attestation": "Model card or safeguards note: refusal training, classifier names, offline-monitoring window, dual-use category table, and classifier-on or classifier-off with residual-risk statement id.",
+      "threshold": {
+        "metric": "safeguard_layers_documented",
+        "description": "Binary: current model version has a public or contractual note covering all three layers and the four dual-use categories.",
+        "operator": "==",
+        "param": "true",
+        "param_type": "verification",
+        "window": "at-model-onboarding",
+        "breach_action": "do-not-bind-write-capable-tools"
+      }
+    },
+    {
+      "id": "JPF-L5-002",
+      "layer": "L5",
+      "component": "Model Governance",
+      "title": "CJS scoring of incoming cyber jailbreaks",
+      "description": "The Model Provider scores reports with CJS and publishes the band. CoSAI does not sit on the CJS drafting committee. Operators consume the band under JPF-L1-002.",
+      "accountable_persona": "model-provider",
+      "operating_models": ["AI-SaaS", "AI-PaaS", "Agent-PaaS", "IaaS"],
+      "obligation": "For each in-scope cyber jailbreak report, publish gain, breadth, ease, discoverability, initial band, and any discretionary raise. State that gain=0 stops at CJS-0.",
+      "attestation": "Scored report or VDP record with the four axis values and the band.",
+      "threshold": {
+        "metric": "in_scope_reports_with_published_cjs",
+        "description": "Fraction of in-scope cyber jailbreak reports in 30 days that carry a published CJS band.",
+        "operator": ">=",
+        "param": "0.95",
+        "window": "30-days",
+        "breach_action": "pause-new-model-launches-until-backlog-clears"
+      }
+    },
+    {
+      "id": "JPF-L5-003",
+      "layer": "L5",
+      "component": "Model Governance",
+      "title": "VDP channel and 24/7 watch for CJS-3 and CJS-4",
+      "description": "The Fable 5 redeployment post creates 24/7 monitoring of jailbreak submission channels and a HackerOne program. This control is that obligation on the Model Provider, with a contractual pointer the operator can test.",
+      "accountable_persona": "model-provider",
+      "operating_models": ["AI-SaaS", "AI-PaaS", "Agent-PaaS"],
+      "obligation": "Publish a submission URL. Staff CJS-3/4 intake 24/7. Acknowledge CJS-4 within 1 hour of confirmation.",
+      "attestation": "VDP URL, staffing roster, and time-to-acknowledge measurements for CJS-3/4 in the last 90 days (or a signed 'none received' note).",
+      "threshold": {
+        "metric": "cjs4_acknowledge_hours",
+        "description": "Hours from confirmed CJS-4 to provider acknowledgement on the watch channel. If no CJS-4 arrived in the window, the control is vacuously met only if the roster exists.",
+        "operator": "<=",
+        "param": "1",
+        "window": "per-finding",
+        "breach_action": "notify-operator-executives-and-freeze-affected-model"
+      }
+    },
+    {
+      "id": "JPF-L5-004",
+      "layer": "L5",
+      "component": "Model Distribution",
+      "title": "Classifier patch shared for independent test",
+      "description": "After a confirmed CJS-3 or CJS-4, the Model Provider ships a preliminary mitigation and gives designated testers enough access to re-run the recipe against the new safeguard. The Fable 5 government-collaboration list requires this sharing; operators need it to close JPF-L1-002 tickets.",
+      "accountable_persona": "model-provider",
+      "operating_models": ["AI-SaaS", "AI-PaaS", "Agent-PaaS"],
+      "obligation": "Within 24 hours of confirmed CJS-3, and immediately on confirmed CJS-4, deploy a preliminary mitigation and provide a retest path to the reporting party and to the operator's named red team.",
+      "attestation": "Patch note: finding id, CJS band, mitigation version, retest result (blocked / residual / fail).",
+      "threshold": {
+        "metric": "cjs3_preliminary_mitigation_hours",
+        "description": "Hours from confirmed CJS-3 to a retestable mitigation in the serving path.",
+        "operator": "<=",
+        "param": "24",
+        "window": "per-finding",
+        "breach_action": "operator-takes-write-capable-tools-offline"
+      }
+    }
+  ]
+}

@@ -1,0 +1,132 @@
+@prefix cosai: <https://cosai-oasis.github.io/ontology/cosai-rm#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+
+<https://cosai-oasis.github.io/ontology/cosai-rm/alignments/bfo> a owl:Ontology ;
+    owl:imports <https://cosai-oasis.github.io/ontology/cosai-rm> ;
+    dcterms:title "CoSAI-RM BFO 2020 alignment"@en ;
+    rdfs:comment "MIREOT subset of BFO 2020 (ISO/IEC 21838-2) and IAO. This file does not owl:imports bfo.owl. External classes are declared with labels only. CoSAI catalog entries are information content entities. World-level classes (disposition, process, role) sit under BFO for operational graphs that instantiate catalog entries."@en ;
+    dcterms:source <http://purl.obolibrary.org/obo/bfo.owl> ;
+    dcterms:source <http://purl.obolibrary.org/obo/iao.owl> .
+
+#################################################################
+# MIREOT: BFO 2020
+#################################################################
+
+obo:BFO_0000001 a owl:Class ;
+    rdfs:label "entity"@en .
+
+obo:BFO_0000002 a owl:Class ;
+    rdfs:label "continuant"@en ;
+    rdfs:subClassOf obo:BFO_0000001 .
+
+obo:BFO_0000003 a owl:Class ;
+    rdfs:label "occurrent"@en ;
+    rdfs:subClassOf obo:BFO_0000001 .
+
+obo:BFO_0000004 a owl:Class ;
+    rdfs:label "independent continuant"@en ;
+    rdfs:subClassOf obo:BFO_0000002 .
+
+obo:BFO_0000015 a owl:Class ;
+    rdfs:label "process"@en ;
+    rdfs:subClassOf obo:BFO_0000003 .
+
+obo:BFO_0000016 a owl:Class ;
+    rdfs:label "disposition"@en ;
+    rdfs:subClassOf obo:BFO_0000017 .
+
+obo:BFO_0000017 a owl:Class ;
+    rdfs:label "realizable entity"@en ;
+    rdfs:subClassOf obo:BFO_0000020 .
+
+obo:BFO_0000020 a owl:Class ;
+    rdfs:label "specifically dependent continuant"@en ;
+    rdfs:subClassOf obo:BFO_0000002 .
+
+obo:BFO_0000023 a owl:Class ;
+    rdfs:label "role"@en ;
+    rdfs:subClassOf obo:BFO_0000017 .
+
+obo:BFO_0000031 a owl:Class ;
+    rdfs:label "generically dependent continuant"@en ;
+    rdfs:subClassOf obo:BFO_0000002 .
+
+obo:BFO_0000040 a owl:Class ;
+    rdfs:label "material entity"@en ;
+    rdfs:subClassOf obo:BFO_0000004 .
+
+#################################################################
+# MIREOT: IAO
+#################################################################
+
+obo:IAO_0000030 a owl:Class ;
+    rdfs:label "information content entity"@en ;
+    rdfs:subClassOf obo:BFO_0000031 ;
+    rdfs:comment "An entity that is generically dependent on some artifact and stands in a relation of aboutness to some entity."@en .
+
+obo:IAO_0000033 a owl:Class ;
+    rdfs:label "directive information entity"@en ;
+    rdfs:subClassOf obo:IAO_0000030 .
+
+obo:IAO_0000104 a owl:Class ;
+    rdfs:label "plan specification"@en ;
+    rdfs:subClassOf obo:IAO_0000033 .
+
+#################################################################
+# Class alignment: catalog layer
+#################################################################
+
+cosai:CatalogEntry rdfs:subClassOf obo:IAO_0000030 .
+
+cosai:Control rdfs:subClassOf obo:IAO_0000033 ;
+    rdfs:comment "A control catalog entry is a directive information entity: it specifies what an enacting persona is to do."@en .
+
+cosai:RiskDisposition rdfs:subClassOf obo:BFO_0000016 .
+cosai:ControlImplementation rdfs:subClassOf obo:BFO_0000015 .
+cosai:PersonaRole rdfs:subClassOf obo:BFO_0000023 .
+
+#################################################################
+# Individual alignment: BFO kind of the denoted world entity
+#################################################################
+
+cosai:componentDataSources cosai:describesBfoClass obo:IAO_0000030 .
+cosai:componentTrainingData cosai:describesBfoClass obo:IAO_0000030 .
+cosai:componentRAGContent cosai:describesBfoClass obo:IAO_0000030 .
+cosai:componentTheModel cosai:describesBfoClass obo:IAO_0000030 .
+cosai:componentModelFrameworksAndCode cosai:describesBfoClass obo:IAO_0000030 .
+cosai:componentMemory cosai:describesBfoClass obo:IAO_0000030 .
+cosai:componentAgentUserQuery cosai:describesBfoClass obo:IAO_0000030 .
+cosai:componentAgentSystemInstruction cosai:describesBfoClass obo:IAO_0000030 .
+
+cosai:componentDataStorage cosai:describesBfoClass obo:BFO_0000040 .
+cosai:componentModelStorage cosai:describesBfoClass obo:BFO_0000040 .
+cosai:componentModelServing cosai:describesBfoClass obo:BFO_0000040 .
+
+cosai:componentDataFilteringAndProcessing cosai:describesBfoClass obo:BFO_0000015 .
+cosai:componentModelEvaluation cosai:describesBfoClass obo:BFO_0000015 .
+cosai:componentModelTrainingTuning cosai:describesBfoClass obo:BFO_0000015 .
+cosai:componentApplicationInputHandling cosai:describesBfoClass obo:BFO_0000015 .
+cosai:componentApplicationOutputHandling cosai:describesBfoClass obo:BFO_0000015 .
+cosai:componentOrchestrationInputHandling cosai:describesBfoClass obo:BFO_0000015 .
+cosai:componentOrchestrationOutputHandling cosai:describesBfoClass obo:BFO_0000015 .
+cosai:componentAgentInputHandling cosai:describesBfoClass obo:BFO_0000015 .
+cosai:componentAgentOutputHandling cosai:describesBfoClass obo:BFO_0000015 .
+
+cosai:componentApplication cosai:describesBfoClass obo:BFO_0000040 .
+cosai:componentReasoningCore cosai:describesBfoClass obo:BFO_0000015 .
+cosai:componentTools cosai:describesBfoClass obo:BFO_0000040 .
+
+cosai:personaModelProvider cosai:describesBfoClass obo:BFO_0000023 .
+cosai:personaDataProvider cosai:describesBfoClass obo:BFO_0000023 .
+cosai:personaPlatformProvider cosai:describesBfoClass obo:BFO_0000023 .
+cosai:personaModelServing cosai:describesBfoClass obo:BFO_0000023 .
+cosai:personaAgenticProvider cosai:describesBfoClass obo:BFO_0000023 .
+cosai:personaApplicationDeveloper cosai:describesBfoClass obo:BFO_0000023 .
+cosai:personaGovernance cosai:describesBfoClass obo:BFO_0000023 .
+cosai:personaEndUser cosai:describesBfoClass obo:BFO_0000023 .
+cosai:personaModelCreator cosai:describesBfoClass obo:BFO_0000023 .
+cosai:personaModelConsumer cosai:describesBfoClass obo:BFO_0000023 .

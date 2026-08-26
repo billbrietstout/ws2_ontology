@@ -1,0 +1,14 @@
+PREFIX cosai: <https://cosai-oasis.github.io/ontology/cosai-rm#>
+PREFIX d3f: <http://d3fend.mitre.org/ontologies/d3fend.owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?control ?label ?match ?technique
+WHERE {
+  ?control a cosai:Control ;
+           rdfs:label ?label ;
+           ?match ?technique .
+  FILTER(?match IN (skos:closeMatch, skos:relatedMatch))
+  FILTER(STRSTARTS(STR(?technique), "http://d3fend.mitre.org/ontologies/d3fend.owl#"))
+}
+ORDER BY ?label ?match

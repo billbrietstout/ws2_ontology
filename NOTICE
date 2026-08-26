@@ -1,0 +1,12 @@
+CoSAI-RM YAML under vendor/cosai-rm is copied from the Coalition for Secure AI
+Tooling repository (https://github.com/cosai-oasis/secure-ai-tooling) under
+Apache License 2.0.
+
+BFO 2020 term IRIs: http://purl.obolibrary.org/obo/BFO_*
+IAO term IRIs: http://purl.obolibrary.org/obo/IAO_*
+MITRE D3FEND IRIs: http://d3fend.mitre.org/ontologies/d3fend.owl#
+SPDX 3.1 IRIs: https://spdx.org/rdf/3.1/terms/
+OpenCRE IRIs: https://www.opencre.org/cre/
+
+This repository stores IRI-level alignments only. It does not redistribute
+those ontologies.

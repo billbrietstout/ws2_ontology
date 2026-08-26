@@ -1,0 +1,4 @@
+CoSAI-RM YAML snapshot from https://github.com/cosai-oasis/secure-ai-tooling
+commit 3a896b8a1b2c8f1949cf524a2f2bba349a9cc83a
+path risk-map/yaml
+license Apache-2.0 (see LICENSE.md in this directory)
